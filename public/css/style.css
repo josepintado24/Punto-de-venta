@@ -1,0 +1,272 @@
+/*____________________________________*/
+/*_______CONFIGURACIÓN DEL BODY_______*/
+/*____________________________________*/
+
+        /*_____________________*/
+        /*____FONTS GENERAL____*/
+        /*_____________________*/
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+html, body{
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+    margin: 0;
+  }
+
+/*_______________________________________*/
+/*_______ESTILOS DEL MENU Y HEADER_______*/
+/*_______________________________________*/
+
+.header {
+    width: 100%;
+    height: 100px;
+    background-color: #363740;
+    margin-bottom: 0;
+}
+
+.header > div > p {
+    color: #ffffff;
+    margin: 0;
+}
+
+.user {
+    width: 45px;
+    cursor: pointer;
+}
+
+
+.logo {
+    width: 100px;
+}
+
+.parrafo {
+    color: #A4A6B3;
+    margin: 0;
+}
+
+/*_______________*/
+/*___USER-main___*/
+/*_______________*/
+
+.config-user {
+    width: 150px;
+    height: auto;
+    background-color: #535353;
+    margin-top: 145px;
+    right: 50px;
+    position: fixed;
+    z-index: 1;
+
+    margin-top: -200px;
+}
+
+.ul-user {
+    padding: 0;
+}
+
+.li-user {
+    list-style: none;
+    height: 35px;
+    line-height: 35px;
+    transition: all 200ms;
+}
+
+.li-user > a {
+    text-decoration: none;
+}
+
+.li-user > a > p {
+    color: #ffffff;
+}
+
+.li-user:hover {
+    background-color: #909090;
+    transition: all 200ms;
+}
+
+.mostrar-main-user {
+    margin-top: 145px;
+}
+
+
+
+/*__________*/
+/*___MAIN___*/
+/*__________*/
+
+.main {
+    width: 250px;
+    height: 90vh;
+    background-color: #363740;
+    bottom: 0;
+    transition: all 600ms;
+    margin-left: -250px;
+}
+
+.mostrar {
+    margin: 0;
+    transition: all 400ms;
+}
+
+.svg-main {
+    fill: #909090;
+    cursor: pointer;
+}
+
+/*__________________________________*/
+/*___________Párrafo y SVG__________*/
+/*__________________________________*/
+
+.estas {
+    background-color: #434449 ;
+    border-left: 5px solid #ffffff;
+    transition: all 200ms;
+}
+
+.estas > a > div > div > p {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+
+
+.estas > a > div > div > svg > path  {
+    fill: #ffffff !important;
+}
+
+
+.p-hover {
+    color: #909090;
+    margin: 0;
+}
+
+.svg {
+    fill: #909090;
+} 
+
+
+/*__________________________________*/
+/*___________Lista del menú_________*/
+/*__________________________________*/
+.ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.li > a {
+    text-decoration: none;
+}
+
+.li {
+    list-style:none;
+    transition: all 300ms;
+}
+
+.li:hover {
+    background-color:#2f3036 ;
+    transition: all 300ms;
+}
+
+/*______________________*/
+/*____Lista PRODUCTO____*/
+/*______________________*/
+
+.ul-prod {
+    padding: 0;
+    margin-left: 30px;
+    display: none;
+}
+
+.ul-prod-active {
+    display: block;
+}
+
+.li-prod > a {
+    text-decoration: none;
+}
+
+.p-prod {
+    color: #909090 ;
+    margin-right: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 40px;
+    text-align: end;
+}
+
+.div-prod {
+    width: 200px;
+}
+
+.div-prod:hover {
+    background-color: #434449;
+    border-left: 10px solid #535353;
+}
+
+/*__________________________________*/
+
+/*______________________*/
+/*____Lista REPORTES____*/
+/*______________________*/
+
+.ul-reportes {
+    padding: 0;
+    margin-left: 30px;
+    display: none;
+}
+
+.ul-reportes-active {
+    display: block;
+}
+
+.li-reportes > a {
+    text-decoration: none;
+}
+
+.p-reportes {
+    color: #909090 ;
+    margin-right: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 40px;
+    text-align: end;
+}
+
+.div-reportes {
+    width: 200px;
+}
+
+.div-reportes:hover {
+    background-color: #434449;
+    border-left: 10px solid #535353;
+}
+
+/*__________________________________*/
+
+/*_______________________________________*/
+/*______________CONTENIDO________________*/
+/*_______________________________________*/
+
+.contenido {
+    background-color: #A4A6B3;
+    height: 100%;
+    width: 100%;
+    margin-top: 100px;
+    transition: all 600ms;
+    padding: 30px;
+    position: fixed;
+}
+
+.abrir {
+    margin-left: 250px;
+    transition: all 600ms;
+}
+
+
