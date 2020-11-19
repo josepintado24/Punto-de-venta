@@ -123,7 +123,7 @@
 
                 <!-- _________CLIENTES_________ -->
                     <li class="li">
-                        <a id="click" href="#" style="text-decoration: none;">
+                        <a id="click" href="<?php echo base_url().'/clientes'; ?>" style="text-decoration: none;">
                             <div class="p-2 bd-highlight">
                                 <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
                                     <svg class="mr-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
