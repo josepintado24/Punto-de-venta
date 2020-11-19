@@ -150,7 +150,6 @@
                         <ul class="ul-prod mb-2">
                             <li class="li-prod d-flex justify-content-end"><a href="<?php echo base_url().'/productos'; ?>"><div class="div-prod"><p class="p-prod">Productos</p></div></a></li>
                             <li class="li-prod d-flex justify-content-end"><a href="<?php echo base_url(); ?>/unidades"><div class="div-prod"><p class="p-prod">Unidades</p></div></a></li>
-                            <li class="li-prod d-flex justify-content-end"><a href="<?php echo base_url().'/categorias'; ?>"><div class="div-prod"><p class="p-prod">Categorias</p></div></a></li>
                         </ul>
                     </li>
 

@@ -2,11 +2,19 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h4 class="mt-4"><?php echo $titulo;?></h4>
+                        <h4 class="mt-4 mb-3"><?php echo $titulo;?></h4>
                             <div>
-                                <p>
-                                    <a href="<?php echo base_url();?>/productos/nuevo" class="btn btn-info">Agregar</a>
-                                    <a href="<?php echo base_url();?>/productos/eliminados" class="btn btn-warning">Eliminados</a>
+                                <p class="mb-5">
+                                    <a href="<?php echo base_url();?>/productos/nuevo" class="btn btn-success">
+                                    <svg class="mr-2" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.2239 0L19.5999 3.376L7.1519 15.84L0.399902 9.08L3.7759 5.704L7.1519 9.08L16.2239 0ZM16.2239 2.24L7.1519 11.328L3.7759 7.992L2.6479 9.08L7.1519 13.576L17.3519 3.376L16.2239 2.24Z" fill="white"/>
+                                        </svg>
+                                    Agregar</a>
+                                    <a href="<?php echo base_url();?>/productos/eliminados" class="btn btn-danger">
+                                    <svg class="mr-2" width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1ZM1 16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H11C11.5304 18 12.0391 17.7893 12.4142 17.4142C12.7893 17.0391 13 16.5304 13 16V4H1V16Z" fill="#F2F2F2"/>
+                                        </svg>
+                                    Eliminados</a>
                                 </p>
                             </div>
                                 <div class="table-responsive">
@@ -16,7 +24,7 @@
                                                 <th>Id</th>
                                                 <th>Nombre</th>
                                                 <th>Precio</th>
-                                                <th>Existencia</th>
+                                                <th class="text-center">Existencia</th>
                                                 <th></th>
                                                 <th> </th>
                                             </tr>
@@ -26,17 +34,17 @@
                                             <?php  
                                                 foreach ($datos as $dato){?>
                                                     <tr>
-                                                        <td><?php echo $dato['id']; ?> </td>
+                                                        <td class="text-center"><?php echo $dato['id']; ?> </td>
                                                         <td><?php echo $dato['nombre']; ?> </td>
-                                                        <td><?php echo $dato['precio_venta']; ?> </td>
-                                                        <td><?php echo $dato['existencia']; ?> </td>
+                                                        <td>$ <?php echo $dato['precio_venta']; ?> </td>
+                                                        <td class="text-center"><?php echo $dato['existencia']; ?> </td>
 
-                                                        <td>
+                                                        <td class="text-center">
                                                             <a href="<?php echo base_url().'/productos/editar/'. $dato['id']; ?>" class="btn btn-warning">
                                                                 <i class="fas fa-pencil-alt"></i>
                                                             </a>
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             <a href="#" data-href="<?php echo base_url().'/productos/eliminar/'. $dato['id']; ?>" data-toggle="modal" data-target="#modal-confirma" data-placement="top" title="Eliminar registro" class="btn btn-danger">
                                                                 <i class="fas fa-trash"></i>
                                                             </a>
