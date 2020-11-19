@@ -31,13 +31,6 @@ class clientes extends BaseController{
 					'errors'=>[
 						'required'=>'El campo {field} es obligatorio.'
 					]
-			],
-			'correo'=>[
-				'rules'=>'required|valid_emails',
-				'errors'=>[
-					'required'=>'El campo {field} es obligatorio.',
-					'valid_emails'=>'El campo {field} es incorrecto.'
-				]
 			]
 		];
 	}
