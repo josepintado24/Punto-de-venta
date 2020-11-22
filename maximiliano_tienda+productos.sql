@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2020 a las 17:35:07
+-- Tiempo de generación: 22-11-2020 a las 21:55:09
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -44,8 +44,42 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `nombre`, `direccion`, `telefono`, `correo`, `activo`, `fecha_alta`, `fecha_edit`) VALUES
 (1, 'Jose Pintado', 'Av Carlos Bustamante', '+51 938150845', 'jose@gmail.com', 1, '2020-11-19 16:09:44', NULL),
-(2, 'Angel Pelaye', 'Cordova', '9898989', 'angel@gmail.com', 1, '2020-11-19 16:26:24', '2020-11-19 15:26:24'),
-(3, 'ddd', 'ddddddd', 'ddd', 'ddddddd@f.c', 0, '2020-11-19 16:25:25', '2020-11-19 15:25:25');
+(2, 'Angel Pelaye ', 'Cordova ', '9898989 ', '', 1, '2020-11-19 20:31:49', '2020-11-19 19:31:49'),
+(3, 'ddd', 'ddddddd', 'ddd', 'ddddddd@f.c', 0, '2020-11-19 16:25:25', '2020-11-19 15:25:25'),
+(4, 'DDDD', 'DDD', 'DDD', '', 1, '2020-11-19 19:31:40', '2020-11-19 19:31:40');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compras`
+--
+
+CREATE TABLE `compras` (
+  `id` int(11) NOT NULL,
+  `folio` varchar(20) NOT NULL,
+  `total` decimal(10,0) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `activo` tinyint(3) NOT NULL DEFAULT 1,
+  `fecha_alta` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `fecha_edit` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_compra`
+--
+
+CREATE TABLE `detalle_compra` (
+  `id` int(11) NOT NULL,
+  `id_compra` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(10,0) NOT NULL,
+  `fecha_alta` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `fecha_edit` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -112,6 +146,20 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `detalle_compra`
+--
+ALTER TABLE `detalle_compra`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_detalle_compra` (`id_compra`),
+  ADD KEY `fk_detalle_producto` (`id_producto`);
+
+--
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -132,7 +180,19 @@ ALTER TABLE `unidades`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `compras`
+--
+ALTER TABLE `compras`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_compra`
+--
+ALTER TABLE `detalle_compra`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -149,6 +209,13 @@ ALTER TABLE `unidades`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `detalle_compra`
+--
+ALTER TABLE `detalle_compra`
+  ADD CONSTRAINT `fk_detalle_compra` FOREIGN KEY (`id_compra`) REFERENCES `compras` (`id`),
+  ADD CONSTRAINT `fk_detalle_producto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
 
 --
 -- Filtros para la tabla `productos`
