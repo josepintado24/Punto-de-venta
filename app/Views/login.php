@@ -6,8 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title> 
     <!--Style and Bootstrap-->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/style.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="<?php echo base_url();?>/svg/logometa.png">
+        <link href="<?php echo base_url();?>/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url();?>/assets/style.css" rel="stylesheet" type="text/css">
     </head>
 
 <!--CÓDIGO HTML-->
@@ -29,41 +30,52 @@
                     <ellipse cx="162" cy="33.5" rx="17" ry="15.5" fill="#06174C"/>
                 </svg>
             </div>
+            
+                <h2 class="mt-4 mr-auto ml-auto">BIENVENIDO</h2>
+            <form method="POST" action="<?php echo base_url().'/usuarios/valida';?>">
+                <div class="d-flex user mr-auto ml-auto mt-5">
+            
+                    <div class="box-svg d-flex justify-content-center align-items-center">
+                        <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z"/></svg>
+                    </div>
+                    
+                    
+                    <input class="float-right ml-auto user-input" type="text" name="usuario" id="usuario" class="input" value="" size="20" /></label>
+                    
 
-            <h2 class="mt-4 mr-auto ml-auto">BIENVENIDO</h2>
-
-            <div class="d-flex user mr-auto ml-auto mt-5">
-
-                <div class="box-svg d-flex justify-content-center align-items-center">
-                    <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z"/></svg>
-                </div>
-                
-                
-                <input class="float-right ml-auto user-input" type="text" name="username" id="username" class="input" value="" size="20" /></label>
-                
-
-            </div>
-
-            <div class="d-flex user mr-auto ml-auto mt-3 ">
-
-                <div class="box-svg d-flex justify-content-center align-items-center">
-                    <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 17c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm3 0c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm3 0c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm2-7v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-10-4c0-2.206 1.795-4 4-4s4 1.794 4 4v4h-8v-4zm11 16h-14v-10h14v10z"/></svg>
                 </div>
 
-                <input class="float-right ml-auto user-input" type="password" name="password" id="password" class="input" value="" size="20" /></label>
+                <div class="d-flex user mr-auto ml-auto mt-3 ">
+
+                    <div class="box-svg d-flex justify-content-center align-items-center">
+                        <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 17c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm3 0c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm3 0c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm2-7v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-10-4c0-2.206 1.795-4 4-4s4 1.794 4 4v4h-8v-4zm11 16h-14v-10h14v10z"/></svg>
+                    </div>
+
+                    <input class="float-right ml-auto user-input" type="password" name="password" id="password" class="input" value="" size="20" /></label>
 
 
-            </div>
+                </div>
 
-            <div class="text-center mt-5">
-                <input type="submit" name="login" class="btn-login" value="Iniciar Sesión" />
-            </div>
+                <div class="text-center mt-5">
+                    <button  name="login" type="submit"  class="btn-login">Entrar</button>
+                </div>
+                <?php if (isset($validation)) {?>
+                    <div class="alert alert-danger">
+                    <?php echo $validation->listErrors(); ?>
+                    </div>
+                <?php }?>
+                <?php if (isset($error)) {?>
+                    <div class="alert alert-danger">
+                <?php echo $error; ?>
+                    </div>
+                <?php }?>
 
             
+            </form>
 
         </section>
 
-        <img class="logo ml-auto" src="images/logo.png">
+        <img class="logo ml-auto" src="<?php echo base_url();?>/images/logo.png">
         
         
         
@@ -101,7 +113,7 @@
 <!--fin de CÓDIGO HTML-->
 
     <!--jQuery and JavaScript-->
-    <script src="assets/jQuery/jquery-3.3.1.slim.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>/assets/jQuery/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>/assets/js/bootstrap.min.js"></script>
     </body>
 </html>
