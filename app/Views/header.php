@@ -1,3 +1,7 @@
+<?php
+    $user_session=session();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -44,7 +48,7 @@
                 <li class="nav-item dropdown">
                     
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Maximiliano    
+                    <?php echo $user_session->nombre; ?>
                         <i class="ml-3 fas fa-user fa-fw"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -102,9 +106,11 @@
                         </a>
                     </li>
                 
-                <!-- _________COMPRAS_________ -->
-                    <li class="li">
-                        <a id="click" href="<?php echo base_url().'/compras'; ?>" style="text-decoration: none;">
+                <!-- _________COMPRAS_________ --> <!--trabajado-->
+                    
+                    
+                        <li class="li">
+                        <a class="m-compras-list" id="click" href="#" style="text-decoration: none;">
                             <div class="p-2 bd-highlight">
                                 <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
                                     <svg class="mr-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"> 
@@ -116,29 +122,21 @@
                                         </defs>
                                     </svg>                
                                     <p class="p-hover">Compras</p>
+                                    <svg class="ml-auto" width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M-2.44664e-08 0.559726L0.413445 -5.06464e-07L11.6067 -1.71907e-08L12 0.539249L6.37311 6H5.54622L-2.44664e-08 0.559726Z" fill="#C5C5C5"/>
+                                    </svg>
                                 </div>
                             </div>
-                        </a> 
-                    </li>
-                    <li class="li">
-                        <a id="click" href="<?php echo base_url().'/compras/nuevo'; ?>" style="text-decoration: none;">
-                            <div class="p-2 bd-highlight">
-                                <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
-                                    <svg class="mr-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"> 
-                                        <path class="svg" d="M5.50187 14.1984C5.50219 14.395 5.56031 14.5875 5.66937 14.7512L6.20344 15.5541C6.29467 15.6913 6.41841 15.8039 6.56366 15.8817C6.7089 15.9596 6.87114 16.0003 7.03594 16.0003H8.96438C9.12917 16.0003 9.29141 15.9596 9.43665 15.8817C9.5819 15.8039 9.70564 15.6913 9.79688 15.5541L10.3309 14.7512C10.44 14.5875 10.4982 14.3952 10.4984 14.1984L10.4997 13H5.50031L5.50187 14.1984ZM2.5 5.5C2.5 6.88656 3.01406 8.15156 3.86125 9.11812C4.3775 9.70718 5.185 10.9378 5.49281 11.9759C5.49406 11.9841 5.495 11.9922 5.49625 12.0003H10.5037C10.505 11.9922 10.5059 11.9844 10.5072 11.9759C10.815 10.9378 11.6225 9.70718 12.1388 9.11812C12.9859 8.15156 13.5 6.88656 13.5 5.5C13.5 2.45656 11.0284 -0.00937887 7.98281 -3.87451e-06C4.795 0.00968363 2.5 2.59281 2.5 5.5ZM8 3C6.62156 3 5.5 4.12156 5.5 5.5C5.5 5.77625 5.27625 6 5 6C4.72375 6 4.5 5.77625 4.5 5.5C4.5 3.57 6.07 2 8 2C8.27625 2 8.5 2.22375 8.5 2.5C8.5 2.77625 8.27625 3 8 3Z" fill="#9FA2B4"/>
-                                        <defs>
-                                        <clipPath id="clip0">
-                                        <rect width="16" height="16" fill="white"/>
-                                        </clipPath>
-                                        </defs>
-                                    </svg>                
-                                    <p class="p-hover">Nuevo</p>
-                                </div>
-                            </div>
-                        </a> 
-                    </li>
-
-                <!-- _________CLIENTES_________ -->
+                        </a>  
+                        
+                            <ul class="ul-compras mb-2">
+                                <li class="li-compras d-flex justify-content-end"><a href="<?php echo base_url().'/compras/nuevo'; ?>"><div class="div-compras"><p class="p-compras">Nuevos</p></div></a></li>
+                                <li class="li-compras d-flex justify-content-end"><a href="<?php echo base_url().'/compras'; ?>"><div class="div-compras"><p class="p-compras">Compras</p></div></a></li>
+                            </ul>
+                        
+                        </li>
+                                          
+                <!-- _________CLIENTES_________ --> <!--trabajado-->
                     <li class="li">
                         <a id="click" href="<?php echo base_url().'/clientes'; ?>" style="text-decoration: none;">
                             <div class="p-2 bd-highlight">
@@ -161,6 +159,9 @@
                                 <path class="svg" d="M15 11.25V0.75C15 0.334375 14.6656 0 14.25 0H4C2.34375 0 1 1.34375 1 3V13C1 14.6562 2.34375 16 4 16H14.25C14.6656 16 15 15.6656 15 15.25V14.75C15 14.5156 14.8906 14.3031 14.7219 14.1656C14.5906 13.6844 14.5906 12.3125 14.7219 11.8313C14.8906 11.6969 15 11.4844 15 11.25ZM5 4.1875C5 4.08437 5.08437 4 5.1875 4H11.8125C11.9156 4 12 4.08437 12 4.1875V4.8125C12 4.91563 11.9156 5 11.8125 5H5.1875C5.08437 5 5 4.91563 5 4.8125V4.1875ZM5 6.1875C5 6.08437 5.08437 6 5.1875 6H11.8125C11.9156 6 12 6.08437 12 6.1875V6.8125C12 6.91563 11.9156 7 11.8125 7H5.1875C5.08437 7 5 6.91563 5 6.8125V6.1875ZM12.9187 14H4C3.44688 14 3 13.5531 3 13C3 12.45 3.45 12 4 12H12.9187C12.8594 12.5344 12.8594 13.4656 12.9187 14Z" fill="#9FA2B4"/>
                                         </svg>                
                                     <p class="p-hover">Productos</p>
+                                    <svg class="ml-auto" width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M-2.44664e-08 0.559726L0.413445 -5.06464e-07L11.6067 -1.71907e-08L12 0.539249L6.37311 6H5.54622L-2.44664e-08 0.559726Z" fill="#C5C5C5"/>
+                                    </svg>
                                 </div>
                             </div>
                         </a>
@@ -187,7 +188,7 @@
     
                 <div class="dropdown-divider mt-4 mb-4"></div>
 
-                <!-- _________REPORTES_________ --> <!--trabajado-->  
+                <!-- _________REPORTES_________ -->  
                     <li class="li">
                         <a class="m-reportes-list" id="click" href="#" style="text-decoration: none;">
                             <div class="p-2 bd-highlight">
@@ -198,6 +199,9 @@
                                         <path class="svg" fill-rule="evenodd" clip-rule="evenodd" d="M8 10.5C8 12.433 6.433 14 4.5 14C2.567 14 1 12.433 1 10.5C1 8.567 2.567 7 4.5 7C6.433 7 8 8.567 8 10.5ZM4.5 13C5.88071 13 7 11.8807 7 10.5C7 9.11929 5.88071 8 4.5 8C3.11929 8 2 9.11929 2 10.5C2 11.8807 3.11929 13 4.5 13Z" fill="#C5C5C5"/>
                                     </svg>                
                                     <p class="p-hover">Reportes</p>
+                                    <svg class="ml-auto" width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M-2.44664e-08 0.559726L0.413445 -5.06464e-07L11.6067 -1.71907e-08L12 0.539249L6.37311 6H5.54622L-2.44664e-08 0.559726Z" fill="#C5C5C5"/>
+                                    </svg>
                                 </div>
                             </div>
                         </a>
@@ -208,16 +212,24 @@
                     </li>
                 <!-- _________CONFIGURACIÓN_________ -->
                     <li class="li">
-                       <a id="click" href="#" style="text-decoration: none;">
+                       <a class="m-config-list" id="click" href="#" style="text-decoration: none;">
                             <div class="p-2 bd-highlight">
                                 <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
                                     <svg class="mr-4" width="16" height="19" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path class="svg" d="M15.2313 9.86557L13.9 9.09682C14.0344 8.37182 14.0344 7.62807 13.9 6.90307L15.2313 6.13432C15.3844 6.04682 15.4531 5.86557 15.4031 5.69682C15.0563 4.58432 14.4656 3.57807 13.6938 2.74057C13.575 2.61244 13.3813 2.58119 13.2313 2.66869L11.9 3.43744C11.3406 2.95619 10.6969 2.58432 10 2.34057V0.806191C10 0.631191 9.87814 0.478066 9.70627 0.440566C8.55939 0.184316 7.38439 0.196816 6.29377 0.440566C6.12189 0.478066 6.00002 0.631191 6.00002 0.806191V2.34369C5.30627 2.59057 4.66252 2.96244 4.10002 3.44057L2.77189 2.67182C2.61877 2.58432 2.42814 2.61244 2.30939 2.74369C1.53752 3.57807 0.946895 4.58432 0.60002 5.69994C0.546895 5.86869 0.61877 6.04994 0.771895 6.13744L2.10314 6.90619C1.96877 7.63119 1.96877 8.37494 2.10314 9.09994L0.771895 9.86869C0.61877 9.95619 0.55002 10.1374 0.60002 10.3062C0.946895 11.4187 1.53752 12.4249 2.30939 13.2624C2.42814 13.3906 2.62189 13.4218 2.77189 13.3343L4.10314 12.5656C4.66252 13.0468 5.30627 13.4187 6.00314 13.6624V15.1999C6.00314 15.3749 6.12502 15.5281 6.29689 15.5656C7.44377 15.8218 8.61877 15.8093 9.70939 15.5656C9.88127 15.5281 10.0031 15.3749 10.0031 15.1999V13.6624C10.6969 13.4156 11.3406 13.0437 11.9031 12.5656L13.2344 13.3343C13.3875 13.4218 13.5781 13.3937 13.6969 13.2624C14.4688 12.4281 15.0594 11.4218 15.4063 10.3062C15.4531 10.1343 15.3844 9.95307 15.2313 9.86557ZM8.00002 10.4999C6.62189 10.4999 5.50002 9.37807 5.50002 7.99994C5.50002 6.62182 6.62189 5.49994 8.00002 5.49994C9.37814 5.49994 10.5 6.62182 10.5 7.99994C10.5 9.37807 9.37814 10.4999 8.00002 10.4999Z" fill="#9FA2B4"/>
                                         </svg>                
                                     <p class="p-hover">Configuración</p>
+                                    <svg class="ml-auto" width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M-2.44664e-08 0.559726L0.413445 -5.06464e-07L11.6067 -1.71907e-08L12 0.539249L6.37311 6H5.54622L-2.44664e-08 0.559726Z" fill="#C5C5C5"/>
+                                    </svg>
                                 </div>
                             </div>
                         </a>
+                        <ul class="ul-config mb-2">
+                            <li class="li-config d-flex justify-content-end"><a href="<?php echo base_url().'/usuarios'; ?>"><div class="div-config"><p class="p-config">Usuarios</p></div></a></li>
+                            <li class="li-config d-flex justify-content-end"><a href="<?php echo base_url(); ?>/unidades"><div class="div-config"><p class="p-config">Cajas</p></div></a></li>
+                            <li class="li-config d-flex justify-content-end"><a href="<?php echo base_url(); ?>/unidades"><div class="div-config"><p class="p-config">Roles</p></div></a></li>
+                        </ul>
                     </li>
 
             </ul>
@@ -261,6 +273,26 @@
          
          
             </script> 
+
+        <!-- _________FUNCTION list-compras_________ -->
+            <script type="text/javascript">
+
+            $('.m-compras-list').on('click', function(){
+                $('.ul-compras').toggleClass('ul-compras-active');
+            })
+
+
+            </script> 
+            
+        <!-- _________FUNCTION list-compras_________ -->
+            <script type="text/javascript">
+
+            $('.m-config-list').on('click', function(){
+                $('.ul-config').toggleClass('ul-config-active');
+            })
+
+
+</script>    
 
         <!-- _________FUNCTION link active_________ -->
              <script>

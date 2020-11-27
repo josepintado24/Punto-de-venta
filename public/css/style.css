@@ -248,6 +248,80 @@ html, body{
     border-left: 10px solid #535353;
 }
 
+/*______________________*/
+/*____Lista COMPRAS____*/
+/*______________________*/
+
+.ul-compras {
+    padding: 0;
+    margin-left: 30px;
+    display: none;
+}
+
+.ul-compras-active {
+    display: block;
+}
+
+.li-compras > a {
+    text-decoration: none;
+}
+
+.p-compras {
+    color: #909090 ;
+    margin-right: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 40px;
+    text-align: end;
+}
+
+.div-compras {
+    width: 200px;
+}
+
+.div-compras:hover {
+    background-color: #434449;
+    border-left: 10px solid #535353;
+}
+
+/*__________________________________*/
+
+/*___________________________*/
+/*____Lista CONFIGURACION____*/
+/*___________________________*/
+
+.ul-config {
+    padding: 0;
+    margin-left: 30px;
+    display: none;
+}
+
+.ul-config-active {
+    display: block;
+}
+
+.li-config > a {
+    text-decoration: none;
+}
+
+.p-config {
+    color: #909090 ;
+    margin-right: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 40px;
+    text-align: end;
+}
+
+.div-config {
+    width: 200px;
+}
+
+.div-config:hover {
+    background-color: #434449;
+    border-left: 10px solid #535353;
+}
+
 /*__________________________________*/
 
 /*_______________________________________*/
@@ -269,4 +343,10 @@ html, body{
     transition: all 600ms;
 }
 
+/*____________________________________________*/
+/*______________agregar COMPRA________________*/
+/*____________________________________________*/
 
+.cantidad-compra{
+    
+}

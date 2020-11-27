@@ -1,32 +1,21 @@
 
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid mt-2">
-
+                    <div class="container-fluid">
+                        <h4 class="mt-4"><?php echo $titulo;?></h4>
                             <div>
                                 <p>
-                                    <a href="<?php echo base_url();?>/clientes" class="btn btn-info">
-                                    <svg class="mr-2" width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.3125 18.4375L0.5 10.625L0.5 8.4375L8.3125 0.624999L10.5313 2.8125L5.40625 7.96875L22.8125 7.96875L22.8125 11.0938L5.40625 11.0937L10.5625 16.25L8.3125 18.4375Z" fill="#E0E0E0"/>
-                                    </svg>
-                                    Regresar</a>
+                                    <a href="<?php echo base_url();?>/usuarios" class="btn btn-primary">usuarios</a>
                                    
                                 </p>
                             </div>
-
-
-
-                        <h4 class="mt-5 mb-4"><?php echo $titulo;?></h4>
-
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
-                                        <tr>
+                                            <tr>
                                                 <th>Id</th>
+                                                <th>Usuario</th>
                                                 <th>Nombre</th>
-                                                <th>direccion</th>
-                                                <th>Telefono</th>
-                                                <th>correo</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -35,16 +24,14 @@
                                             <?php  
                                                 foreach ($datos as $dato){?>
                                                     <tr>
-                                                        <td class="text-center"><?php echo $dato['id']; ?> </td>
+                                                        <td><?php echo $dato['id']; ?> </td>
+                                                        <td><?php echo $dato['usuario']; ?> </td>
                                                         <td><?php echo $dato['nombre']; ?> </td>
-                                                        <td><?php echo $dato['direccion']; ?> </td>
-                                                        <td><?php echo $dato['telefono']; ?> </td>
-                                                        <td><?php echo $dato['correo']; ?> </td>
 
                                                     
-                                                        <td class="text-center">
-                                                            <a href="#" data-href="<?php echo base_url().'/clientes/reingresar/'. $dato['id']; ?>" data-toggle="modal" data-target="#modal-confirma" data-placement="top" title="Reingresar registro" >
-                                                                <i class="fas fa-arrow-circle-up"></i>
+                                                        <td>
+                                                            <a href="#" data-href="<?php echo base_url().'/usuarios/reingresar/'. $dato['id']; ?>" data-toggle="modal" data-target="#modal-confirma" data-placement="top" title="Reingresar registro" >
+                                                                <i class="fas fa-arrow-circle-down"></i>
                                                             </a>
                                                         </td>
                                                         
