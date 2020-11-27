@@ -16,7 +16,6 @@
         
         <link rel="shortcut icon" href="<?php echo base_url();?>/svg/logometa.png">
         <title>Sistemas venta</title>
-
 <!--__________STYLES__________-->
 
         <link href="<?php echo base_url();?>/css/styles.css" rel="stylesheet" />
