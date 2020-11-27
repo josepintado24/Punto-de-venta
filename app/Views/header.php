@@ -53,7 +53,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Configuración</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-center" href="login.html">Salir</a>
+                        <a class="dropdown-item text-center"  href=" <?php echo base_url().'/usuarios/logout'; ?>">Salir</a>
                     </div>
                 </li>
             </ul>
@@ -226,9 +226,7 @@
                         </a>
                         <ul class="ul-config mb-2">
                             <li class="li-config d-flex justify-content-end"><a href="<?php echo base_url().'/usuarios'; ?>"><div class="div-config"><p class="p-config">Usuarios</p></div></a></li>
-                            <li class="li-config d-flex justify-content-end"><a href="<?php echo base_url(); ?>/unidades"><div class="div-config"><p class="p-config">Cajas</p></div></a></li>
-                            <li class="li-config d-flex justify-content-end"><a href="<?php echo base_url(); ?>/unidades"><div class="div-config"><p class="p-config">Roles</p></div></a></li>
-                        </ul>
+                             </ul>
                     </li>
 
             </ul>

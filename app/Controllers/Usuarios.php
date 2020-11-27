@@ -274,7 +274,7 @@ class Usuarios extends BaseController{
 					];
 					$session=session();
 					$session->set($sesionDatos);
-					return redirect()->to(base_url().'/configuracion');
+					return redirect()->to(base_url().'/productos');
 				}else{
 					$data['error']='Las contraseñas no existe';
 					echo view('login',$data);
