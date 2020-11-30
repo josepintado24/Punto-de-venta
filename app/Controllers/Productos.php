@@ -206,6 +206,25 @@ class Productos extends BaseController{
 		return redirect()->to(base_url().'/productos/eliminados');
 	}
 
-	//--------------------------------------------------------------------
+	public function buscarPorNombre($nombre){
+		$this->productos->select('*');
+		$this->productos->where('nombre', $nombre);
+		$this->productos->where('activo', 1);
+		$datos=$this->productos->get()->getRow();
+		$res['existe']=false;
+		$res['datos']='';
+		$res['error']='';
+		if ($datos){
+			$res['datos']=$datos;
+			$res['existe']=true;
+		}else{
+			$res['existe']=false;
+			$res['error']='No existe el producto';
+		}
+
+		echo \json_encode($res);
+
+	}
+
 
 }

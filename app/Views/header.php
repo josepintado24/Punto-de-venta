@@ -23,6 +23,7 @@
         <link href="<?php echo base_url();?>/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="<?php echo base_url();?>/js/all.min.js" crossorigin="anonymous"></script>
         
+        
     </head>
 
 

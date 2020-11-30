@@ -12,15 +12,8 @@
 
 
                     <div class="container-fluid">
-                       <?php if (isset($validation)) {?>
-                       <div class="alert alert-danger">
-                         <?php echo $validation->listErrors(); ?>
-                       </div>
-                       <?php }?>
-
-
-
-                            <form method="POST" action="<?php echo base_url();?>/compras/guarda" autocomplete="off">
+                       
+                    <form method="POST" id="form_compra" name="form_compra"action="<?php echo base_url();?>/compras/guarda" autocomplete="off">
 
                             <!-- ____CÓDIGO AGREGAR COMPRA____ -->
                             <div class="container">
@@ -32,33 +25,35 @@
 
                                         <!-- ____Nombre de Producto____ -->
                                         <div class="col-4 col-sm-4">
+                                        <input class="form-control" type="hidden" id="id_producto" name="id_producto" />
                                             <label for="">Nombre de Producto</label>
-                                            <input value="<?php echo set_value('nombre');?>" class="form-control" id="nombre" name="nombre" type="text" autofocus required  >
+                                            <input onkeyup="buscarProducto(event,this,this.value)" placeholder="Escribe el producto y enter" class="form-control" id="nombre" name="nombre" type="text" autofocus required  >
+                                            <label for="nombre" id="resultado_error" style="color: red"></label>
                                         </div>
 
                                         <!-- ____Precio de Compra____ -->
                                         <div class="col-4 col-sm-4">
                                             <label for="">Precio de Compra</label>
-                                            <input value="<?php echo set_value('nombre_corto');?>" class="form-control" id="nombre_corto" name="nombre_corto" type="number" step="any" required >
+                                            <input class="form-control" id="precio_compra" name="precio_compra" type="number" step="any" required disabled>
                                         </div>
 
-                                        <!-- ____Precio de Venta____ -->
-                                        <div class="col-4 col-sm-4">
-                                            <label for="">Precio de Venta</label>
-                                            <input value="<?php echo set_value('nombre_corto');?>" class="form-control" id="nombre_corto" name="nombre_corto" type="number" step="any" required >
+                                         <!-- ____Cantidad____ -->
+                                         <div class="cantidad-compra col-2 ml-0">
+                                            <label for="">Cantidad</label>
+                                            <input onkeyup="subtotalProducto(event,this,this.value)"  class="form-control" id="cantidad" name="cantidad" type="number" step="any" required >
                                         </div>
                                 </div>
 
                                 <div class="row d-flex align-items-end mb-5">
                                         
-                                        <!-- ____Cantidad____ -->
-                                        <div class="cantidad-compra col-2 ml-0">
-                                            <label for="">Cantidad</label>
-                                            <input value="<?php echo set_value('nombre_corto');?>" class="form-control" id="nombre_corto" name="nombre_corto" type="number" step="any" required >
+                                       <!-- ____Precio de Venta____ -->
+                                        <div class="col-4 col-sm-4">
+                                            <label for="">Subtotal</label>
+                                            <input class="form-control" id="subtotal" name="subtotal" type="number" step="any" required disabled>
                                         </div>
 
                                         <!-- ____Button Agregar____ -->
-                                        <button type="button" class="btn btn-warning mr-3 ml-auto">
+                                        <button type="button" id="agregar_producto" name="agregar_producto" class="btn btn-warning mr-3 ml-auto">
                                             Agregar
                                         </button>
                                 </div>
@@ -70,54 +65,38 @@
                         <!-- ____Tabla de Compra____ -->
 
                             <section class="container-fluid">
-                                <table class="table">
-                                        <thead class="thead-dark">
-                                              <tr class="row">
-                                                  <th class="col-6" scope="col">Producto</th>
-                                                  <th class="col-3 text-center" scope="col">Cantidad</th>
-                                                  <th class="col-3 text-center" scope="col">Precio</th>
-                                              </tr>
-                                        </thead>
-                                  <tbody>
-                                    <tr class="row">
-                                      <th class="col-6" scope="row">Producto de ejemplo 1</th>
-                                      <td class="col-3 text-center">37</td>
-                                      <td class="col-3 text-center">$100.000</td>
-                                      
-                                    </tr>
-                                    <tr class="row">
-                                      <th class="col-6" scope="row">Producto de ejemplo 2</th>
-                                      <td class="col-3 text-center">90</td>
-                                      <td class="col-3 text-center">$100.000</td>
-                                      
-                                    </tr>
-                                    <tr class="row">
-                                      <th class="col-6" scope="row">Producto de ejemplo 3</th>
-                                      <td class="col-3 text-center">25</td>
-                                      <td class="col-3 text-center">$50.000</td>
-                                      
-                                    </tr>
-                                        
-                                    <tr class="row">
-                                        <th class="col-10 d-flex justify-content-end" scope="row">TOTAL</th>
-                                        <td class="col-2 text-center"><strong>$250.000</strong></td>
-                                    </tr>
-
-                                  </tbody>
+                                <table id="tablaProductos" class="table table-sm">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Código</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Total</th>
+                                            <th width ="1%" scope="col"></th>
+                                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                                    
+                                    </tbody>
                                 </table>
-                               
                             </section>
-                           
-                            
-                            
-                            <!-- ____Button Guardar____ -->
-                            <button type="submit" class="mt-5 btn btn-success float-right">
-                                <svg class="mr-2" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16.2239 0L19.5999 3.376L7.1519 15.84L0.399902 9.08L3.7759 5.704L7.1519 9.08L16.2239 0ZM16.2239 2.24L7.1519 11.328L3.7759 7.992L2.6479 9.08L7.1519 13.576L17.3519 3.376L16.2239 2.24Z" fill="white"/>
-                                </svg>
-                                Confirmar 
-                            </button>
-                               
+                            <div>
+                                <div class="col-12 col-sm-6 offset-md-6"> 
+                                    <label style="font-weight: bold; font-size: 30px; text-align: center;"> Total $</label>
+                                    <input style="font-weight: bold; font-size: 30px; text-align: center;" size="7" readonly="true" type="text" id="total" name="total" value="0.00">
+                                       
+                                     <!-- ____Button Guardar____ -->
+                                    <button type="button" id="completa_compra" name="completa_compra"  class="btn btn-success">
+                                        <svg class="mr-2" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16.2239 0L19.5999 3.376L7.1519 15.84L0.399902 9.08L3.7759 5.704L7.1519 9.08L16.2239 0ZM16.2239 2.24L7.1519 11.328L3.7759 7.992L2.6479 9.08L7.1519 13.576L17.3519 3.376L16.2239 2.24Z" fill="white"/>
+                                        </svg>
+                                        Confirmar 
+                                    </button>
+                                </div>
+                            </div>  
                                 
                             </form>
                             
@@ -126,4 +105,64 @@
                         
                     </div>
                 </main>
+                <script src="<?php echo base_url();?>/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+                <script>
+                var precio_compra;
+                     $(document).ready(function(){
+                            $("#completa_compra").click(function(){
+                                let nFila=$("#tablaProductos tr").length;
+                                if(nFila<2){
+                                    
+                                }else{
+                                    $("#form_compra").submit();
+                                }
+                            });
+                           
+                        });
+
+                    function buscarProducto(e, tagNombre, nombre){
+                        var enterkey=13;
+                        if(nombre !=''){
+                            if(e.which==enterkey){
+                                
+                                
+                                $.ajax({
+                                    url: '<?php echo base_url(); ?>/productos/buscarPorNombre/'+nombre,
+                                    dataType: 'json',
+                                    success: function(resultado){
+                                        if (resultado ==0){
+                                            $(tagNombre).val('');
+                                        }else{
+                                            $(tagNombre).removeClass('has-error');
+                                            $('#resultado_error').html(resultado.error);
+                                            if(resultado.existe){
+                                                $('#id_producto').val(resultado.datos.id);
+                                                $('#cantidad').val(1);
+                                                $('#precio_compra').val(resultado.datos.precio_compra);
+                                                $('#subtotal').val(resultado.datos.precio_compra);
+                                                $('#cantidad').focus();
+                                                precio_compra=resultado.datos.precio_compra;
+                                            
+                                            }else{
+                                                $('#id_producto').val('');
+                                                $('#cantidad').val('');
+                                                $('#precio_compra').val('');
+                                                $('#subtotal').val('');
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }
+                    function subtotalProducto(e, tagCantidad, cantidad){
+                        var enterkey=13;
+                        if(cantidad !=''){
+                            if(e.which==enterkey){
+                                $('#subtotal').val(cantidad*precio_compra);
+                            }
+                        }
+                    }
+
+                </script>
                 
