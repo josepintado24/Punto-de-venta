@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class TemporalCompraModel extends Model
 {
-    protected $table      = 'temporal_compras';
+    protected $table      = 'temporal_compra';
     protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
@@ -19,4 +19,33 @@ class TemporalCompraModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    public function porIdProductoCompra($id_producto,$folio){
+        $this->select('*');
+        $this->where('folio',$folio);
+        $this->where('id_producto',$id_producto);
+        $datos=$this->get()->getRow();
+        return $datos;
+    }
+    public function porCompra($folio){
+        $this->select('*');
+        $this->where('folio',$folio);
+        $datos=$this->findAll();
+        return $datos;
+    }
+    public function actualizarProductoCompra($id_producto,$folio,$cantidad,$subtotal){
+        $this->set('cantidad',$cantidad);
+        $this->set('subtotal',$subtotal);
+        $this->where('id_producto',$id_producto);
+        $this->where('folio',$folio);
+        $this->update();
+
+    }
+    public function eliminarProductoCompra($id_producto,$folio){
+        $this->where('id_producto',$id_producto);
+        $this->where('folio',$folio);
+        $this->delete();
+
+    }
+
 }

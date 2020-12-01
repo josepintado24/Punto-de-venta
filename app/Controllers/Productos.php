@@ -222,7 +222,7 @@ class Productos extends BaseController{
 			$res['error']='No existe el producto';
 		}
 
-		echo \json_encode($res);
+		echo json_encode($res);
 
 	}
 

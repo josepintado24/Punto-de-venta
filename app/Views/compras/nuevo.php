@@ -1,3 +1,4 @@
+<?php $id_compra=uniqid(); ?>
 <div id="layoutSidenav_content">
                 <main>
 
@@ -53,8 +54,9 @@
                                         </div>
 
                                         <!-- ____Button Agregar____ -->
-                                        <button type="button" id="agregar_producto" name="agregar_producto" class="btn btn-warning mr-3 ml-auto">
-                                            Agregar
+                                      
+                                        <button onclick="agregarProducto(id_producto.value,cantidad.value, '<?php echo $id_compra; ?>' )" id="agregar_producto" name="agregar_producto" type="button" class="btn btn-warning mr-3 ml-auto">
+                                                Agregar Producto
                                         </button>
                                 </div>
 
@@ -69,7 +71,6 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Código</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Precio</th>
                                             <th scope="col">Cantidad</th>
@@ -89,7 +90,7 @@
                                     <input style="font-weight: bold; font-size: 30px; text-align: center;" size="7" readonly="true" type="text" id="total" name="total" value="0.00">
                                        
                                      <!-- ____Button Guardar____ -->
-                                    <button type="button" id="completa_compra" name="completa_compra"  class="btn btn-success">
+                                    <button   type="button" id="completa_compra" name="completa_compra"  class="btn btn-success" >
                                         <svg class="mr-2" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M16.2239 0L19.5999 3.376L7.1519 15.84L0.399902 9.08L3.7759 5.704L7.1519 9.08L16.2239 0ZM16.2239 2.24L7.1519 11.328L3.7759 7.992L2.6479 9.08L7.1519 13.576L17.3519 3.376L16.2239 2.24Z" fill="white"/>
                                         </svg>
@@ -123,9 +124,7 @@
                     function buscarProducto(e, tagNombre, nombre){
                         var enterkey=13;
                         if(nombre !=''){
-                            if(e.which==enterkey){
-                                
-                                
+                            if(e.which==enterkey){                                
                                 $.ajax({
                                     url: '<?php echo base_url(); ?>/productos/buscarPorNombre/'+nombre,
                                     dataType: 'json',
@@ -142,9 +141,9 @@
                                                 $('#subtotal').val(resultado.datos.precio_compra);
                                                 $('#cantidad').focus();
                                                 precio_compra=resultado.datos.precio_compra;
-                                            
                                             }else{
                                                 $('#id_producto').val('');
+                                                $('#nombre').val('');
                                                 $('#cantidad').val('');
                                                 $('#precio_compra').val('');
                                                 $('#subtotal').val('');
@@ -155,6 +154,33 @@
                             }
                         }
                     }
+                    function agregarProducto(id_producto, cantidad, id_compra){
+                 
+                        if(id_producto !=null && id_producto!=0 && cantidad >0){
+                                $.ajax({
+                                    url: '<?php echo base_url(); ?>/TemporalCompra/inserta/'+id_producto+"/"+cantidad+"/"+id_compra,
+                                    success: function(resultado){
+                                        if (resultado ==0){
+                                           
+                                        }else{
+                                           var resultado=JSON.parse(resultado);
+                                           if(resultado.error==''){
+                                                $("#tablaProductos tbody").empty();
+                                                $("#tablaProductos tbody").append(resultado.datos);
+                                                $("#total").val(resultado.total);
+                                                $('#nombre').val('');
+                                                $('#id_producto').val('');
+                                                $('#cantidad').val('');
+                                                $('#precio_compra').val('');
+                                                $('#subtotal').val('');
+
+                                           }
+                                        }
+                                    }
+                                });
+                        }
+                        
+                    }
                     function subtotalProducto(e, tagCantidad, cantidad){
                         var enterkey=13;
                         if(cantidad !=''){
@@ -162,6 +188,25 @@
                                 $('#subtotal').val(cantidad*precio_compra);
                             }
                         }
+                    }
+                    
+
+                    function eliminaProducto(id_producto,id_compra){
+                                                   
+                                $.ajax({
+                                    url: '<?php echo base_url(); ?>/TemporalCompra/eliminar/'+id_producto+"/"+id_compra,
+                                    dataType: 'json',
+                                    success: function(resultado){
+                                        if (resultado ==0){
+                                            $(tagNombre).val('');
+                                        }else{
+                                            $("#tablaProductos tbody").empty();
+                                            $("#tablaProductos tbody").append(resultado.datos);
+                                            $("#total").val(resultado.total);
+                                        }
+                                    }
+                                });
+                        
                     }
 
                 </script>
