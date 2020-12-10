@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2020 a las 05:12:19
+-- Tiempo de generación: 10-12-2020 a las 17:05:46
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -86,12 +86,54 @@ INSERT INTO `clientes` (`id`, `nombre`, `direccion`, `telefono`, `correo`, `acti
 CREATE TABLE `compras` (
   `id` int(11) NOT NULL,
   `folio` varchar(20) NOT NULL,
-  `total` decimal(10,0) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `activo` tinyint(3) NOT NULL DEFAULT 1,
-  `fecha_alta` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `fecha_edit` timestamp NULL DEFAULT NULL
+  `fecha_alta` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`id`, `folio`, `total`, `id_usuario`, `activo`, `fecha_alta`) VALUES
+(11, '5fd184668f0c7', '40.00', 1, 1, '2020-12-10 01:14:22'),
+(12, '5fd187ff9d6db', '500.00', 1, 1, '2020-12-10 01:29:52'),
+(13, '5fd18a42dd6b8', '250000.00', 1, 1, '2020-12-10 01:39:13'),
+(14, '5fd18b086a27f', '49380.48', 1, 1, '2020-12-10 01:43:00'),
+(15, '5fd1c19cdb048', '128451.20', 1, 1, '2020-12-10 05:35:24'),
+(16, '5fd1c26416dfa', '50130.48', 1, 1, '2020-12-10 05:39:15');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_compra`
+--
+
+CREATE TABLE `detalle_compra` (
+  `id` int(11) NOT NULL,
+  `id_compra` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `fecha_alta` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detalle_compra`
+--
+
+INSERT INTO `detalle_compra` (`id`, `id_compra`, `id_producto`, `nombre`, `cantidad`, `precio`, `fecha_alta`) VALUES
+(15, 11, 5, 'Agua', 20, '500.00', '2020-12-10 01:14:22'),
+(16, 11, 7, 'Litio', 30, '1000.00', '2020-12-10 01:14:22'),
+(17, 12, 5, 'Agua', 1000, '500.00', '2020-12-10 01:29:52'),
+(18, 13, 5, 'Agua', 500, '500.00', '2020-12-10 01:39:13'),
+(19, 14, 7, 'Litio', 4, '12345.12', '2020-12-10 01:43:00'),
+(20, 15, 5, 'Agua', 10, '500.00', '2020-12-10 05:35:24'),
+(21, 15, 7, 'Litio', 10, '12345.12', '2020-12-10 05:35:24'),
+(22, 16, 5, 'Agua', 2, '500.00', '2020-12-10 05:39:15'),
+(23, 16, 7, 'Litio', 4, '12345.12', '2020-12-10 05:39:15');
 
 -- --------------------------------------------------------
 
@@ -120,8 +162,8 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `codigo`, `precio_venta`, `precio_compra`, `existencia`, `stock_minimo`, `inventariable`, `id_unidad`, `activo`, `fecha_alta`, `fecha_edit`, `nombre`) VALUES
 (3, '02020202', '0.00', '0.00', 0, 0, 0, 1, 1, '2020-11-17 20:05:40', NULL, 'Fierro de construcción'),
-(5, '', '800.00', '500.00', 0, 50, 0, 2, 1, '2020-11-17 22:58:06', '2020-11-17 22:58:06', 'Agua'),
-(7, '', '1200.00', '1000.00', 0, 80, 0, 1, 1, '2020-11-18 00:36:38', '2020-11-17 23:36:38', 'Litio'),
+(5, '', '800.00', '500.00', 1543, 50, 0, 2, 1, '2020-12-10 06:39:15', '2020-12-01 03:33:04', 'Agua'),
+(7, '', '1200.00', '12345.12', 68, 80, 0, 1, 1, '2020-12-10 06:39:15', '2020-11-17 23:36:38', 'Litio'),
 (9, '', '5000.00', '5000.00', 0, 1111, 0, 1, 0, '2020-11-19 04:05:08', '2020-11-19 03:05:08', 'eeeeeee');
 
 -- --------------------------------------------------------
@@ -145,6 +187,23 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `nombre`, `activo`, `fecha_alta`, `fecha_edit`) VALUES
 (1, 'admin', 1, '2020-11-10 00:59:48', NULL),
 (2, 'cajero', 1, '2020-11-16 04:26:54', '2020-11-16 03:26:54');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `temporal_compra`
+--
+
+CREATE TABLE `temporal_compra` (
+  `id` int(11) NOT NULL,
+  `folio` varchar(20) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `codigo` varchar(30) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `subtotal` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -195,7 +254,8 @@ INSERT INTO `usuarios` (`id`, `usuario`, `password`, `nombre`, `id_caja`, `id_ro
 (1, 'jose', '$2y$10$qzC1P0UVdJ2tvEqFL3YJMOjd9xuLlDsum7SD188ebYvA1HHpXf30W', 'Jose Pintado', 1, 1, 0, '2020-11-10 01:39:59', '2020-11-16 01:34:31'),
 (2, 'luis', '$2y$10$IHy3gKcutRPvl4VCslAlJO8.yBeqm2MLVRtFu.2xvqSBpo.DMvPx2', 'Luis Vasquez', 1, 1, 0, '2020-11-10 00:44:44', '2020-11-16 01:32:27'),
 (3, 'manuel', '$2y$10$iAjxJdSUcGup4AgNIFU5rOTLKH3y/P7sVzarXGmXgGIONdMA9xgS6', 'Manuel Pintado', 1, 1, 0, '2020-11-10 00:49:00', '2020-11-16 01:26:16'),
-(4, 'angel', '$2y$10$/Xr2iEOUwHMYa8YmuTdHG.D6.eQ6mDw3MpVWvVOn.OdFMQz/WTO4K', 'Angel Pelayes', 1, 2, 1, '2020-11-16 01:34:22', '2020-11-16 01:34:22');
+(4, 'angel', '$2y$10$/Xr2iEOUwHMYa8YmuTdHG.D6.eQ6mDw3MpVWvVOn.OdFMQz/WTO4K', 'Angel Pelayes', 1, 2, 1, '2020-11-16 01:34:22', '2020-11-16 01:34:22'),
+(5, 'litsen', '$2y$10$fqSpTT5AziwStfrIyPo3Z.nwnbGElEleGd6RSe1tXyG/pX/bw9P2e', 'litsen Free', 1, 1, 1, '2020-11-27 21:00:59', '2020-11-27 21:00:59');
 
 --
 -- Índices para tablas volcadas
@@ -217,7 +277,16 @@ ALTER TABLE `clientes`
 -- Indices de la tabla `compras`
 --
 ALTER TABLE `compras`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_compras_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `detalle_compra`
+--
+ALTER TABLE `detalle_compra`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_detalle_compra` (`id_compra`),
+  ADD KEY `fk_detalle_producto` (`id_producto`);
 
 --
 -- Indices de la tabla `productos`
@@ -230,6 +299,12 @@ ALTER TABLE `productos`
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `temporal_compra`
+--
+ALTER TABLE `temporal_compra`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -266,7 +341,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_compra`
+--
+ALTER TABLE `detalle_compra`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -281,6 +362,12 @@ ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `temporal_compra`
+--
+ALTER TABLE `temporal_compra`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
 -- AUTO_INCREMENT de la tabla `unidades`
 --
 ALTER TABLE `unidades`
@@ -290,11 +377,24 @@ ALTER TABLE `unidades`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD CONSTRAINT `fk_compras_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `detalle_compra`
+--
+ALTER TABLE `detalle_compra`
+  ADD CONSTRAINT `fk_detalle_compra` FOREIGN KEY (`id_compra`) REFERENCES `compras` (`id`),
+  ADD CONSTRAINT `fk_detalle_producto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
 
 --
 -- Filtros para la tabla `productos`
