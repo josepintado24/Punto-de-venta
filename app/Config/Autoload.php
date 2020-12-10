@@ -71,7 +71,9 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 		 *       'MyClass'   => '/path/to/class/file.php'
 		 *   ];
 		 */
-		$classmap = [];
+		$classmap = [
+			'FPDF'=>APPPATH.'ThirdParty/fpdf/fpdf.php',
+		];
 
 		//--------------------------------------------------------------------
 		// Do Not Edit Below This Line

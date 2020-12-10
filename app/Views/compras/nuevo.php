@@ -1,5 +1,5 @@
 <?php $id_compra=uniqid(); ?>
-<div id="layoutSidenav_content">
+            <div id="layoutSidenav_content">
                 <main>
 
 
@@ -26,7 +26,8 @@
 
                                         <!-- ____Nombre de Producto____ -->
                                         <div class="col-4 col-sm-4">
-                                        <input class="form-control" type="hidden" id="id_producto" name="id_producto" />
+                                        <input type="hidden" id="id_producto" name="id_producto" />
+                                        <input  type="hidden" id="id_compra" name="id_compra"  value="<?php echo $id_compra;?>" />
                                             <label for="">Nombre de Producto</label>
                                             <input onkeyup="buscarProducto(event,this,this.value)" placeholder="Escribe el producto y enter" class="form-control" id="nombre" name="nombre" type="text" autofocus required  >
                                             <label for="nombre" id="resultado_error" style="color: red"></label>
@@ -208,6 +209,7 @@
                                 });
                         
                     }
+                    
 
                 </script>
                 

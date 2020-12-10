@@ -24,35 +24,32 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Nombre</th>
-                                                <th>Nombre Corto</th>
+                                                <th>Folio</th>
+                                                <th>Total</th>
+                                                <th>Fecha Alta</th>
                                                 <th></th>
-                                                <th> </th>
                                             </tr>
                                         </thead>
                                         
                                         <tbody>
-                                            <?php  
+                                           <?php  
                                                 foreach ($datos as $dato){?>
                                                     <tr>
                                                         <td><?php echo $dato['id']; ?> </td>
-                                                        <td><?php echo $dato['nombre']; ?> </td>
-                                                        <td><?php echo $dato['nombre_corto']; ?> </td>
+                                                        <td><?php echo $dato['folio']; ?> </td>
+                                                        <td><?php echo $dato['total']; ?> </td>
+                                                        <td><?php echo $dato['fecha_alta']; ?> </td>
 
                                                         <td class="text-center">
-                                                            <a href="<?php echo base_url().'/unidades/editar/'. $dato['id']; ?>" class="btn btn-warning">
-                                                                <i class="fas fa-pencil-alt"></i>
+                                                            <a href="<?php  echo base_url().'/compras/muestraCompraPdf/'. $dato['id']; ?>" class="btn btn-primary">
+                                                            <i class="fas fa-info-circle"></i>
                                                             </a>
                                                         </td>
-                                                        <td class="text-center">
-                                                            <a href="#" data-href="<?php echo base_url().'/unidades/eliminar/'. $dato['id']; ?>" data-toggle="modal" data-target="#modal-confirma" data-placement="top" title="Eliminar registro" class="btn btn-danger">
-                                                                <i class="fas fa-trash"></i>
-                                                            </a>
-                                                        </td>
+                                                        
                                                     </tr>
 
-                                         <?php }
-                                            ?>
+                                        <?php }
+                                           ?>
                                         </tbody>
                                     </table>
                                 </div>
