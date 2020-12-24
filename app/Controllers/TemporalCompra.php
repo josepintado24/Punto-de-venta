@@ -47,6 +47,36 @@ class TemporalCompra extends BaseController{
 		$res['total']=number_format($this->totalProductos($id_compra),2,'.',',');
 		echo json_encode($res);
 	}
+	public function insertaVenta($id_producto, $cantidad, $id_compra){
+		$error='';
+		$producto=$this->productos->where('id',$id_producto)->first();
+		if($producto){
+			$datosExisten=$this->temporal_compra->porIdProductoCompra($id_producto,$id_compra);
+			if($datosExisten){
+				$cantidad=$datosExisten->cantidad+$cantidad;
+				$subtotal=$cantidad*$datosExisten->precio;
+				$this->temporal_compra->actualizarProductoCompra($id_producto,$id_compra,$cantidad,$subtotal);
+			}else{
+				$subtotal=$cantidad*$producto['precio_venta'];
+				$this->temporal_compra->save([
+					'folio'=> $id_compra,
+					'id_producto'=> $id_producto,
+					'codigo'=> $producto['codigo'],
+					'precio'=> $producto['precio_venta'],
+					'nombre'=> $producto['nombre'],
+					'cantidad'=> $cantidad,
+					'subtotal'=>$subtotal,
+
+				]);
+			}
+		}else{
+			$error='No existe el producto';
+		}
+		$res['datos']=$this->cargarProductos($id_compra);
+		$res['error']=$error;
+		$res['total']=number_format($this->totalProductos($id_compra),2,'.',',');
+		echo json_encode($res);
+	}
 
 	
 

@@ -13,17 +13,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        
         <link rel="shortcut icon" href="<?php echo base_url();?>/svg/logometa.png">
         <title>Sistemas venta</title>
 <!--__________STYLES__________-->
-
         <link href="<?php echo base_url();?>/css/styles.css" rel="stylesheet" />
         <link href="<?php echo base_url();?>/css/style.css" rel="stylesheet" />
+        <link href="<?php echo base_url();?>/js/jquery-ui.min.css" rel="stylesheet" />
         <link href="<?php echo base_url();?>/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="<?php echo base_url();?>/js/all.min.js" crossorigin="anonymous"></script>
-        
-        
     </head>
 
 
@@ -173,7 +170,7 @@
 
                 <!-- _________VENTAS_________ -->
                     <li class="li">
-                        <a id="click" href="#" style="text-decoration: none;">
+                        <a id="click" href=" <?php echo base_url().'/ventas/venta'; ?>" style="text-decoration: none;">
                             <div class="p-2 bd-highlight">
                                 <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">    
                                     <svg class="mr-4" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">

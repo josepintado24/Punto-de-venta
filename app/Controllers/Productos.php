@@ -225,6 +225,39 @@ class Productos extends BaseController{
 		echo json_encode($res);
 
 	}
+	public function buscarPorId($id_producto){
+		$this->productos->select('*');
+		$this->productos->where('id', $id_producto);
+		$this->productos->where('activo', 1);
+		$datos=$this->productos->get()->getRow();
+		$res['existe']=false;
+		$res['datos']='';
+		$res['error']='';
+		if ($datos){
+			$res['datos']=$datos;
+			$res['existe']=true;
+		}else{
+			$res['existe']=false;
+			$res['error']='No existe el producto';
+		}
+
+		echo json_encode($res);
+
+	}
+	public function autocompleteData(){
+		$returnData=array();
+		$valor=$this->request->getGet('term');
+		$productos=$this->productos->like('nombre', $valor)->where('activo',1)->findAll();
+		if(!empty($productos)){
+			foreach($productos as $row){
+				$data['id']=$row['id'];
+				$data['value']=$row['nombre'];
+				array_push($returnData,$data);
+
+			}
+		}
+		echo json_encode(($returnData));
+	}
 
 
 }
