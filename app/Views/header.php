@@ -263,6 +263,12 @@ $user_session = session();
                                     </div>
                                 </a>
                             </li>
+                            <li class="li-config d-flex justify-content-end"><a href="<?php echo base_url() . '/precios'; ?>">
+                                    <div class="div-config">
+                                        <p class="p-config">precios Productos</p>
+                                    </div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
