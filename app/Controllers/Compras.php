@@ -6,15 +6,17 @@ use App\Models\ComprasModel;
 use App\Models\TemporalCompraModel;
 use App\Models\DetalleCompraModel;
 use App\Models\ProductosModel;
+use App\Models\ConfiguracionModel;
 
 class Compras extends BaseController{
 
-	protected $compras, $tempral_compra, $detalle_compra, $productos;
+	protected $compras, $tempral_compra, $detalle_compra, $productos, $configuracion;
 	protected $reglas;
 
 	public function __construct(){
 		$this->compras=new ComprasModel();
 		$this->detalle_compra=new DetalleCompraModel();
+		$this->configuracion=new ConfiguracionModel();
 		helper(['form']);
 
 		
@@ -74,17 +76,18 @@ class Compras extends BaseController{
 	function generarCompraPdf($id_compra){
 		$datosCompras=$this->compras->where('id',$id_compra)->first();
 		$detalle_compra=$this->detalle_compra->select('*')->where('id_compra',$id_compra)->findAll();
+		$nombreTienda= $this->configuracion->select('valor')->where('nombre','tienda_nombre')->get()->getRow()->valor;
+		$direccionTienda= $this->configuracion->select('valor')->where('nombre','tienda_direccion')->get()->getRow()->valor;
 		$pdf=new \FPDF('P','mm', 'letter');
 		$pdf->AddPage();
 		$pdf->SetMargins(10, 10, 10);
 		$pdf->SetTitle("Compras");
 		$pdf->SetFont('Arial','B', 10);
-
 		$pdf->Cell(195,5,"Entrada de productos", 0, 1, 'C');
 		$pdf->SetFont('Arial','B', 9);
 		$pdf->image(base_url().'/images/logopdf.png',185,10,20,10,'PNG');
-		$pdf->Cell(50,5,"Nombre Tienda", 0, 1, 'L');
-		$pdf->Cell(50,5, utf8_decode('Dirección'), 0, 1, 'L');
+		$pdf->Cell(50,5,utf8_decode($nombreTienda), 0, 1, 'L');
+		$pdf->Cell(50,5, utf8_decode($direccionTienda), 0, 1, 'L');
 		$pdf->Cell(25,5,"Fecha y Hora:", 0, 0, 'L');
 		$pdf->SetFont('Arial','', 10);
 		$pdf->Cell(50,5,$datosCompras['fecha_alta'], 0, 1, 'L');
@@ -106,7 +109,7 @@ class Compras extends BaseController{
 		foreach($detalle_compra as $row){
 			$pdf->Cell(14,5,$contador,1,0,'L');
 			$pdf->Cell(25,5,$row['id_producto'],1,0,'L');
-			$pdf->Cell(77,5,$row['nombre'],1,0,'L');
+			$pdf->Cell(77,5,utf8_decode($row['nombre']),1,0,'L');
 			$pdf->Cell(25,5,'$ '.$row['precio'],1,0,'L');
 			$pdf->Cell(25,5,$row['cantidad'],1,0,'L');
 			$pdf->Cell(30,5,'$ '.number_format(($row['precio'] * $row['cantidad']),2,'.',','),1,1,'R');

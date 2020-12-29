@@ -6,14 +6,16 @@ use App\Models\VentasModel;
 use App\Models\TemporalCompraModel;
 use App\Models\DetalleVentaModel;
 use App\Models\ProductosModel;
+use App\Models\ConfiguracionModel;
 
 class Ventas extends BaseController{
 
-	protected $ventas, $tempral_compra, $detalle_venta, $productos;
+	protected $ventas, $tempral_compra, $detalle_venta, $productos,$configuracion;
 
 	public function __construct(){
 		$this->ventas=new VentasModel();
 		$this->detalle_venta=new DetalleVentaModel();
+		$this->configuracion=new ConfiguracionModel();
 		helper(['form']);
 	}
 	public function index($activo=1){
@@ -69,6 +71,11 @@ class Ventas extends BaseController{
 	function generarTicketPdf($id_venta){
 		$datosventa=$this->ventas->where('id',$id_venta)->first();
 		$detalle_venta=$this->detalle_venta->select('*')->where('id_venta',$id_venta)->findAll();
+		$nombreTienda= $this->configuracion->select('valor')->where('nombre','tienda_nombre')->get()->getRow()->valor;
+		$direccionTienda= $this->configuracion->select('valor')->where('nombre','tienda_direccion')->get()->getRow()->valor;
+		$ticket_leyenda= $this->configuracion->select('valor')->where('nombre','ticket_leyenda')->get()->getRow()->valor;
+		$tienda_email= $this->configuracion->select('valor')->where('nombre','tienda_email')->get()->getRow()->valor;
+
 		$pdf=new \FPDF('P','mm', array(80, 200));
 		$pdf->AddPage();
 		$pdf->SetMargins(5, 5, 5);
@@ -78,7 +85,7 @@ class Ventas extends BaseController{
 		$pdf->Cell(70,5,"Nombre Tienda", 0, 1, 'C');
 		$pdf->SetFont('Arial','B', 7);
 		$pdf->image(base_url().'/images/logopdf.png',5,5,20,10,'PNG');
-		$pdf->Cell(70,5, utf8_decode('Av Jose Jose'), 0, 1, 'C');
+		$pdf->Cell(70,5, utf8_decode($direccionTienda), 0, 1, 'C');
 		$pdf->Cell(25,5,"Fecha y Hora:", 0, 0, 'L');
 		$pdf->SetFont('Arial','', 10);
 		$pdf->Cell(50,5,$datosventa['fecha_alta'], 0, 1, 'L');
@@ -102,6 +109,8 @@ class Ventas extends BaseController{
 		$pdf->ln(3);
 		$pdf->SetFont('Arial','B', 10);
 		$pdf->Cell(70,5,'TOTAL: $ '.number_format($datosventa['total'],2,'.',','),0,1,'R');
+		$pdf->ln(1);
+		$pdf->MultiCell(70,4,utf8_decode($ticket_leyenda),0,'C',0);
 		$this->response->setHeader('content-Type', 'application/pdf');
 		$pdf->Output("ticket.pdf", "I");
 
