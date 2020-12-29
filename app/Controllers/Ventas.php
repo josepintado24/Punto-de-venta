@@ -82,7 +82,7 @@ class Ventas extends BaseController{
 		$pdf->SetTitle("venta");
 		$pdf->SetFont('Arial','B', 10);
 
-		$pdf->Cell(70,5,"Nombre Tienda", 0, 1, 'C');
+		$pdf->Cell(70,5,utf8_decode($nombreTienda), 0, 1, 'C');
 		$pdf->SetFont('Arial','B', 7);
 		$pdf->image(base_url().'/images/logopdf.png',5,5,20,10,'PNG');
 		$pdf->Cell(70,5, utf8_decode($direccionTienda), 0, 1, 'C');
@@ -111,6 +111,7 @@ class Ventas extends BaseController{
 		$pdf->Cell(70,5,'TOTAL: $ '.number_format($datosventa['total'],2,'.',','),0,1,'R');
 		$pdf->ln(1);
 		$pdf->MultiCell(70,4,utf8_decode($ticket_leyenda),0,'C',0);
+		$pdf->MultiCell(70,4,utf8_decode($tienda_email),0,'C',0);
 		$this->response->setHeader('content-Type', 'application/pdf');
 		$pdf->Output("ticket.pdf", "I");
 
