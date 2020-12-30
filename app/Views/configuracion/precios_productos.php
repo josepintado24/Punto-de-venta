@@ -29,8 +29,9 @@
                                 foreach ($datos as $dato) { ?>
                                     <tr>
                                         <td><?php echo $dato['nombre']; ?></td>
-                                        <td><input value="<?php echo $dato['precio_venta']; ?> " class="form-control" id="nombre_corto" name="nombre_corto" typr="text"></td>
                                         <td><input value="<?php echo $dato['precio_compra']; ?> " class="form-control" id="nombre_corto" name="nombre_corto" typr="text"></td>
+                                        <td><input value="<?php echo $dato['precio_venta']; ?> " class="form-control" id="nombre_corto" name="nombre_corto" typr="text"></td>
+                                        
                                     </tr>
                                 <?php }
                                 ?>
