@@ -1,7 +1,7 @@
 <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                       <h4 class="mt-4"><?php echo $titulo;?></h4>
+                       <h4 class="mt-4 mb-3"><strong><?php echo $titulo;?></strong></h4>
                        <!-- <?php //if (isset($validation)) {?>
                             <div class="alert alert-danger">
                                 <?php //echo $validation->listErrors(); ?>
@@ -12,8 +12,6 @@
                                 <input type="hidden" value="<?php //echo $datos['id']; ?>" name="id">
                                 <div class="form-group">
                                     <div class="row">
-
-                                    <h4>Esto es una prueba</h4>
 
                                     <?php  
                                     foreach ($datos as $dato){?>
