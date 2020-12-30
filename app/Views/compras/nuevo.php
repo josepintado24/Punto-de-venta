@@ -4,7 +4,7 @@
 
 
         <!-- ____Button Regresar____ -->
-        <a href="<?php echo base_url(); ?>/compras" class="btn btn-info m-4">
+        <a href="<?php echo base_url(); ?>/compras" class="btn btn-info mt-4 ml-5">
             <svg class="mr-2" width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8.3125 18.4375L0.5 10.625L0.5 8.4375L8.3125 0.624999L10.5313 2.8125L5.40625 7.96875L22.8125 7.96875L22.8125 11.0938L5.40625 11.0937L10.5625 16.25L8.3125 18.4375Z" fill="#E0E0E0" />
             </svg>
@@ -17,9 +17,9 @@
             <form method="POST" id="form_compra" name="form_compra" action="<?php echo base_url(); ?>/compras/guarda" autocomplete="off">
 
                 <!-- ____CÓDIGO AGREGAR COMPRA____ -->
-                <div class="container">
+                <div class="container-fluid mt-3">
 
-                    <h2 class="mt-2 mb-5">AGREGAR COMPRA</h2>
+                    <h2 class="mt-2 mb-5 text-center">AGREGAR COMPRA</h2>
 
                     <!-- ____agregar items____ -->
                     <div class="row mb-3">
