@@ -13,6 +13,8 @@
                                 <div class="form-group">
                                     <div class="row">
 
+                                    <h4>Esto es una prueba</h4>
+
                                     <?php  
                                     foreach ($datos as $dato){?>
                                                     <div class="col-12 col-sm-6">
