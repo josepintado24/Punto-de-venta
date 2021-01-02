@@ -13,12 +13,12 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-12 col-sm-6">
-                                            <label for="">Nombre Tienda</label>
+                                            <label for="">Nombre Tienda:</label>
                                             <input class="form-control" id="tienda_nombre" name="tienda_nombre" typr="text" value="<?php echo $nombre['valor']; ?>"  >
                                         </div>
 
                                         <div class="col-12 col-sm-6">
-                                            <label for="">RFC</label>
+                                            <label for="">RFC:</label>
                                             <input class="form-control" id="tienda_rfc" name="tienda_rfc" typr="text" value="<?php echo $tienda_rfc['valor']; ?>"  >
                                         </div>
                                     </div>    
@@ -26,25 +26,35 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-12 col-sm-6">
-                                            <label for="">telefono</label>
-                                            <input class="form-control" id="tienda_telefono" name="tienda_telefono" typr="text" value="<?php echo $tienda_telefono['valor']; ?>"  >
+                                            <label for="">Telefono:</label>
+                                            <input class="form-control" id="tienda_telefono" name="tienda_telefono" typr="number" value="<?php echo $tienda_telefono['valor']; ?>"  >
                                         </div>
 
                                         <div class="col-12 col-sm-6">
-                                            <label for="">email</label>
-                                            <input class="form-control" id="tienda_email" name="tienda_email" typr="text" value="<?php echo $tienda_email['valor']; ?>" >
+                                            <label for="">Email:</label>
+                                            <input class="form-control" id="tienda_email" name="tienda_email" typr="email" value="<?php echo $tienda_email['valor']; ?>" >
                                         </div>
                                     </div>    
                                 </div>
+
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-12 col-sm-6">
-                                            <label for="">direccion</label>
+                                            <label for="">WhatsApp:</label>
+                                            <input class="form-control" id="tienda_wpp" name="tienda_wpp" typr="number" value="<?php echo $tienda_wpp['valor']; ?>"  >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            <label for="">Direccion:</label>
                                             <textarea class="form-control" id="tienda_direccion" name="tienda_direccion" typr="text" value="<?php echo $tienda_direccion['valor']; ?>"><?php echo $tienda_direccion['valor']; ?></textarea>
                                         </div>
 
                                         <div class="col-12 col-sm-6">
-                                            <label for="">ticket</label>
+                                            <label for="">Ticket:</label>
                                             <textarea class="form-control" id="ticket_leyenda" name="ticket_leyenda" typr="text" value="<?php echo $ticket_leyenda['valor']; ?>"><?php echo $ticket_leyenda['valor']; ?></textarea>
                                            
                                         </div>

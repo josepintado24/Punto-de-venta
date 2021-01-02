@@ -7,43 +7,80 @@
                 <input type="hidden" id="id_venta" name="id_venta" value="<?php echo $idVentaTmp ?>">
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-12 col-sm-5">
+                        <div class="col-12 col-sm-6 col-lg-6">
                             <div class="ui-widget">
                                 <label for="">Cliente:</label>
                                 <input type="hidden" id="id_cliente" name="id_cliente" class="id_cliente" value="1">
                                 <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Escribe el nombre del cliente" value="Público en general" onkeyup="" autocomplete="off" />
                             </div>
                         </div>
-                        <div class="col-12 col-sm-5">
+                        <div class="col-12 col-sm-3 col-lg-3">
                             <label for="">Forma de pago:</label>
                             <select name="forma_pago" id="forma_pago" class="form-control">
                                 <option value="001">Efectivo</option>
                                 <option value="002">Credito</option>
                             </select>
                         </div>
-                        <div class="col-12 col-sm-2">
-                            <label for="">Cantidad</label>
-                            <input value="1" class="form-control" id="cantidad" name="cantidad" type="number" step="any" required>
+                        <div class="col-12 col-sm-3 col-lg-3 text-center">
+                            <label for="">Cantidad:</label>
+                            <input value="1" class="form-control text-center" id="cantidad" name="cantidad" type="number" step="any" required>
                         </div>
                     </div>
                 </div>
+                
+                </br>
+                <h4>Datos de envío:</h4>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="ui-widget">
+                                <label for="">Nombre de quien lo recibe:</label>
+                                <input type="hidden" id="id_cliente" name="id_cliente" class="id_cliente" value="1">
+                                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Nombre" value="" onkeyup="" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-3">
+                            <div class="ui-widget">
+                                <label for="">Dirección de entrega:</label>
+                                <input type="hidden" id="id_cliente" name="id_cliente" class="id_cliente" value="1">
+                                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Dirección" value="" onkeyup="" autocomplete="off" />
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-12 col-sm-3 mt-4 text-center">
+                            <label style="font-weight: bold; font-size: 25px; text-align: center;"> Envío $</label>
+                            <input style="font-weight: bold; font-size: 25px; text-align: center;" type="number" size="5" placeholder="0.00" >
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                </br>
+                </br>
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-12 col-sm-4">
                             <input type="hidden" id="id_producto" name="id_producto" />
-                            <label for="">Nombre de Producto</label>
+                            <label for="">Nombre de Producto:</label>
                             <input onkeyup="agregarProducto(event,id_producto.value,cantidad.value, '<?php echo $idVentaTmp ?>')" placeholder="Escribe nombre producto" class="form-control" id="nombre" name="nombre" type="text">
                         </div>
                         <div class="col-sm-2">
                             <label for="codigo" id="resultado_error" style="color:red"></label>
                         </div>
 
-                        <div class="col-12 col-sm-3">
+                        
+
+                        <div class="col-12 col-sm-3 mt-4">
                             <label style="font-weight: bold; font-size: 30px; text-align: center;"> Total $</label>
                             <input style="font-weight: bold; font-size: 30px; text-align: center;" size="7" readonly="true" type="text" id="total" name="total" value="0.00">
                         </div>
                     </div>
                 </div>
+
+
                 <div class="form-group">
                     <button type="button" id="completa_venta" name="completa_venta" class="btn btn-success">
                         <svg class="mr-2" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
