@@ -29,7 +29,7 @@
                 </div>
                 
                 </br>
-                <h4>Datos de envío:</h4>
+                <h4>Datos de envío</h4>
 
                 <div class="form-group">
                     <div class="row">
