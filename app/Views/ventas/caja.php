@@ -63,46 +63,47 @@
 
                     <!--__****FORMULARIO ENVÍOS****__-->
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-                        
-                            <h3 class="mb-5">Costo Adicional</h3>
+
+                        <div class="box-costo-adicional text-center">
                             
-                        <div class="costo_envio">
-                            <p><strong>ENVÍO</strong><p>
+                            <h3 class="mb-5">Costo Adicional</h3>
                             <!--|COSTO ADICIONAL/ENVÍO|-->
-                            <!--__nombre__-->
-                            <div>
-                                <label class="label-ca"> <p>Nombre:</p> </label>
-                                <input>
+                            <div class="costo_envio">
+                                <p><strong>ENVÍO</strong><p>
+                                <!--__nombre__-->
+                                <div>
+                                    <label class="label-ca"> <p>Nombre:</p> </label>
+                                    <input>
+                                </div>
+                                <!--__dirección__-->
+                                <div>
+                                    <label class="label-ca"> <p>Dirección:</p> </label>
+                                    <input>
+                                </div>
+                                <!--__costo__-->
+                                <div>
+                                    <label class="label-ca"> <p>Costo:</p> </label>
+                                    <input>
+                                </div>
                             </div>
-                            <!--__dirección__-->
-                            <div>
-                                <label class="label-ca"> <p>Dirección:</p> </label>
-                                <input>
+                                <!--|COSTO ADICIONAL/OTRO|-->
+                            <div class="costo_adicional">
+                                <p><strong>OTRO</strong><p>
+                                <!--__detalle__-->
+                                <div>
+                                    <label class="label-ca"> <p>Detalle:</p> </label>
+                                    <input>
+                                </div>
+                                <!--__costo__-->
+                                <div>
+                                    <label class="label-ca"> <p>Costo:</p> </label>
+                                    <input>
+                                </div>
                             </div>
-                            <!--__costo__-->
-                            <div>
-                                <label class="label-ca"> <p>Costo:</p> </label>
-                                <input>
-                            </div>
+
+
                         </div>
-
-                    <!--|COSTO ADICIONAL/OTRO|-->
-                        <div class="costo_adicional">
-                            <p><strong>OTRO</strong><p>
-
-                            <!--__detalle__-->
-                            <div>
-                                <label class="label-ca"> <p>Detalle:</p> </label>
-                                <input>
-                            </div>
-                            <!--__costo__-->
-                            <div>
-                                <label class="label-ca"> <p>Costo:</p> </label>
-                                <input>
-                            </div>
-                        <div>
                     </div>
-
                 </div>
             </div>   
                 <!--__$TOTAL$__-->
