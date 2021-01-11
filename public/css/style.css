@@ -346,9 +346,32 @@ html, body{
 }
 
 /*____________________________________________*/
-/*______________agregar COMPRA________________*/
+/*______________VENTAS________________*/
 /*____________________________________________*/
 
-.cantidad-compra{
-    
+.label-ventas {
+    display: inline-block;
+    width: 220px;
 }
+
+.label-ca {
+    display: inline-block;
+    width: 100px;
+}
+
+.form-control-2 {
+    display: inline-block;
+    width: 250px;
+}
+
+.form-control-3 {
+    display: inline-block;
+    width: 94px;
+    text-align: center;
+}
+
+#forma_pago {
+    height: 33px !important;
+}
+
+
