@@ -145,6 +145,8 @@ class clientes extends BaseController{
 			foreach($clientes as $row){
 				$data['id']=$row['id'];
 				$data['value']=$row['nombre'];
+				$data['email']=$row['correo'];
+				$data['telefono']=$row['telefono'];
 				array_push($returnData,$data);
 
 			}

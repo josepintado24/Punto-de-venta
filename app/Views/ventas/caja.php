@@ -1,116 +1,137 @@
 <div id="layoutSidenav_content">
     <main>
-    
         <div class="container-fluid">
             <?php $idVentaTmp = uniqid(); ?>
-            <br>
-
-
-            <form id="form_venta" name="form_venta" class="form-horizontal" action=" <?php echo base_url().'/ventas/guarda'; ?>" method="post" autocomplete="off">
+            <form id="form_venta" name="form_venta" action=" <?php echo base_url() . '/ventas/guarda'; ?>" method="post" autocomplete="off">
                 <input type="hidden" id="id_venta" name="id_venta" value="<?php echo $idVentaTmp ?>">
-            
-
-
-            <!--__FORMULARIO DE VENTA__-->
-            <div class="form-group">
-                <div class="row">
-                    <!--__****FORMULARIO 1****__-->
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-8">
-
-                        <h3 class="mb-5">Costo Base</h3>
-
-                        <!--__cliente__-->
-                        <div>
-                            <label class="label-ventas"> <p>Cliente:</p> </label>
-                            <input type="hidden" id="id_cliente" name="id_cliente" class="id_cliente" value="1">
-                            <input class="form-control-2" type="text" id="cliente" name="cliente" placeholder="Escribe el nombre del cliente" value="Público en general" onkeyup="" autocomplete="off" />
-                        </div>
-                        <!--__forma de pago__-->
-                        <div>
-                            <label class="label-ventas"> <p>Forma de pago:</p> </label>
-                            <select name="forma_pago" id="forma_pago">
-                                <option value="001">Efectivo</option>
-                                <option value="002">Credito</option>
-                            </select>
-                        </div>
-                        <!--__cantidad__-->
-                        <div>
-                            <label class="label-ventas"> <p>Cantidad:</p> </label>
-                            <input class="form-control-3" value="1" class="text-center" id="cantidad" name="cantidad" type="number" step="any" required>
-                        </div> 
-
-                        <!--__nombre de producto__-->
-                        <div>
-                            <label class="label-ventas"> <p>Nombre de Producto:</p> </label>
-                            <input type="hidden" id="id_producto" name="id_producto" />
-                            <input onkeyup="agregarProducto(event,id_producto.value,cantidad.value, '<?php echo $idVentaTmp ?>')" placeholder="Escribe nombre producto" class="form-control-2" id="nombre" name="nombre" type="text">
-                        </div>
-                        <!--__*ERROR*__-->
-                        <div class="col-sm-2">
-                            <label for="codigo" id="resultado_error" style="color:red"></label>
-                        </div>
-
-                        <!--__BOTÓN COMPRA__-->
-                        <div class="text-center mt-4">
-                            <button type="button" id="completa_venta" name="completa_venta" class="btn btn-success">
-                            <svg class="mr-2" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.2239 0L19.5999 3.376L7.1519 15.84L0.399902 9.08L3.7759 5.704L7.1519 9.08L16.2239 0ZM16.2239 2.24L7.1519 11.328L3.7759 7.992L2.6479 9.08L7.1519 13.576L17.3519 3.376L16.2239 2.24Z" fill="white" />
-                            </svg>
-                            Completa venta
-                            </button>
-                        </div>
-                    </div>
-
-                    <!--__****FORMULARIO ENVÍOS****__-->
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-
-                        <div class="box-costo-adicional text-center">
-                            
-                            <h3 class="mb-5">Costo Adicional</h3>
-                            <!--|COSTO ADICIONAL/ENVÍO|-->
-                            <div class="costo_envio">
-                                <p><strong>ENVÍO</strong><p>
-                                <!--__nombre__-->
-                                <div>
-                                    <label class="label-ca"> <p>Nombre:</p> </label>
-                                    <input>
+                <!--__FORMULARIO DE VENTA__-->
+                <div class="form-group">
+                    <div class="row">
+                        <!--__****FORMULARIO 1****__-->
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    Costo Base
                                 </div>
-                                <!--__dirección__-->
-                                <div>
-                                    <label class="label-ca"> <p>Dirección:</p> </label>
-                                    <input>
-                                </div>
-                                <!--__costo__-->
-                                <div>
-                                    <label class="label-ca"> <p>Costo:</p> </label>
-                                    <input>
+                                <div class="card-body">
+                                    <!--__cliente__-->
+                                    <h6 class="card-title">Cliente</h6>
+                                    <input type="hidden" id="id_cliente" name="id_cliente" class="id_cliente" value="1">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input class="form-control" type="text" id="cliente" name="cliente" placeholder="Escribe el nombre del cliente" value="Público en general" onkeyup="" autocomplete="off" />
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="telefono_cliente" name="telefono_cliente" class="form-control " type="private" placeholder="teléfono cliente" disabled>
+                                            </div>
+                                            <div class="col-5">
+                                                <input id="email_cliente" name="email_cliente" class="form-control " type="private" placeholder="email" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <!--__forma de pago__-->
+                                            <div class="col-6">
+                                                <label>
+                                                    Forma de pago:
+                                                </label>
+                                                <select name="forma_pagos" id="forma_pagos" class="form-control custom-select">
+                                                    <option value="001">Efectivo</option>
+                                                    <option value="002">Credito</option>
+                                                </select>
+                                            </div>
+                                            <!--__cantidad__-->
+                                            <div class="col-4">
+                                                <label class="label-ventas">
+                                                    Cantidad:
+                                                </label>
+                                                <input class="form-control" value="1" class="text-center" id="cantidad" name="cantidad" type="number" step="any" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <!--__nombre de producto__-->
+                                            <div class="col-12">
+                                                <label class="label-ventas">
+                                                    Nombre de Producto:
+                                                </label>
+                                                <input type="hidden" id="id_producto" name="id_producto" />
+                                                <input onkeyup="agregarProducto(event,id_producto.value,cantidad.value, '<?php echo $idVentaTmp ?>')" placeholder="Escribe nombre producto" class="form-control" id="nombre" name="nombre" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                                <!--|COSTO ADICIONAL/OTRO|-->
-                            <div class="costo_adicional">
-                                <p><strong>OTRO</strong><p>
-                                <!--__detalle__-->
-                                <div>
-                                    <label class="label-ca"> <p>Detalle:</p> </label>
-                                    <input>
+                            <!--__*ERROR*__-->
+                            <div class="col-sm-2">
+                                <label for="codigo" id="resultado_error" style="color:red"></label>
+                            </div>
+                        </div>
+
+                        <!--__****FORMULARIO ENVÍOS****__-->
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    Costo Adicional
                                 </div>
-                                <!--__costo__-->
-                                <div>
-                                    <label class="label-ca"> <p>Costo:</p> </label>
-                                    <input>
+                                <div class="card-body">
+                                    <h6 class="card-title">Envio</h6>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <input name="envio_nombre" id="envio_nombre" class="form-control form-control-sm" type="text" placeholder="nombre">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <input name="envio_direccion" id="envio_direccion" class="form-control form-control-sm" type="text" placeholder="dirección">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <input name="envio_telefono" id="envio_telefono" class="form-control form-control-sm" type="text" placeholder="teléfono">
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="input-group input-group-sm mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
+                                                    </div>
+                                                    <input name="envio_costo" id="envio_costo" value="0" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6 class="card-title">Otro</h6>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <input name="otro_detalle" id="otro_detalle" class="form-control form-control-sm" type="text" placeholder="detalle">
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="input-group input-group-sm mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
+                                                    </div>
+                                                    <input  name="otro_detalle_costo" id="otro_detalle_costo"  value="0" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-            </div>   
                 <!--__$TOTAL$__-->
-                <div class="mt-5 mb-5 text-center mr-auto ml-auto">
-                    <label style="font-weight: bold; font-size: 30px; text-align: center;"> Total $</label>
-                    <input style="font-weight: bold; font-size: 30px; text-align: center;" size="7" readonly="true" type="text" id="total" name="total" value="0.00">
-                </div>
+
 
                 <section class="container-fluid">
                     <table id="tablaProductos" class="table table-sm">
@@ -127,7 +148,27 @@
                         <tbody>
                         </tbody>
                     </table>
+                    <div class="col12">
+                        <div class="row">
+                            <div class="mt-0 mb-0 text-center mr-auto ml-auto col-6">
+                                <label style="font-weight: bold; font-size: 30px; text-align: center;"> Total $</label>
+                                <input style="font-weight: bold; font-size: 30px; text-align: center;" size="7" readonly="true" type="text" id="total" name="total" value="0.00">
+                            </div>
+                            <div class="text-center mt-4 col-6">
+                                <button type="button" id="completa_venta" name="completa_venta" class="btn btn-success">
+                                    <svg class="mr-2" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.2239 0L19.5999 3.376L7.1519 15.84L0.399902 9.08L3.7759 5.704L7.1519 9.08L16.2239 0ZM16.2239 2.24L7.1519 11.328L3.7759 7.992L2.6479 9.08L7.1519 13.576L17.3519 3.376L16.2239 2.24Z" fill="white" />
+                                    </svg>
+                                    Completa venta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--__BOTÓN COMPRA__-->
+
                 </section>
+
             </form>
         </div>
     </main>
@@ -142,6 +183,8 @@
             event.preventDefault();
             $("#id_cliente").val(ui.item.id);
             $("#cliente").val(ui.item.value);
+            $("#telefono_cliente").val(ui.item.telefono);
+            $("#email_cliente").val(ui.item.email);
         }
     });
     $("#nombre").autocomplete({
@@ -204,12 +247,12 @@
             }
         });
     }
-    $(function(){
-        $("#completa_venta").click(function(){
-            let nFilas=$("#tablaProductos tr").length;
-            if(nFilas<2){
+    $(function() {
+        $("#completa_venta").click(function() {
+            let nFilas = $("#tablaProductos tr").length;
+            if (nFilas < 2) {
                 alert("Debe agregar un producto")
-            }else{
+            } else {
                 $("#form_venta").submit();
             }
         });

@@ -39,10 +39,17 @@ class Ventas extends BaseController{
 	public function guarda(){
 		$id_venta=$this->request->getPost('id_venta');
 		$total=preg_replace('/[\$,]/','', $this->request->getPost('total'));
-		$forma_pago= $this->request->getPost('forma_pago');
+		$forma_pago= $this->request->getPost('forma_pagos');
 		$id_cliente= $this->request->getPost('id_cliente');
+		// 'envio_nombre','envio_direccion','envio_telefono','envio_costo','otro_detalle','otro_detalle_costo'
+		$envio_nombre=$this->request->getPost('envio_nombre');
+		$envio_direccion=$this->request->getPost('envio_direccion');
+		$envio_telefono=$this->request->getPost('envio_telefono');
+		$envio_costo=$this->request->getPost('envio_costo');
+		$otro_detalle=$this->request->getPost('otro_detalle');
+		$otro_detalle_costo=$this->request->getPost('otro_detalle_costo');
 		$session=session();
-		$resultadoId=$this->ventas->insertaVenta($id_venta, $total,$session->id_usuario,$session->id_caja, $id_cliente, $forma_pago);
+		$resultadoId=$this->ventas->insertaVenta($id_venta, $total,$session->id_usuario,$session->id_caja, $id_cliente, $forma_pago,$envio_nombre,$envio_direccion,$envio_telefono,$envio_costo,$otro_detalle,$otro_detalle_costo);
 		$this->tempral_compra=new TemporalCompraModel();
 		if($resultadoId){
 			$resultadoCompra=$this->tempral_compra->porCompra($id_venta);
