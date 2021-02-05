@@ -42,7 +42,7 @@
                         <!-- ____Cantidad____ -->
                         <div class="cantidad-compra col-2 ml-0">
                             <label for="">Cantidad</label>
-                            <input onkeyup="subtotalProducto(event,this,this.value)" class="form-control" id="cantidad" name="cantidad" type="number" step="any" required>
+                            <input onkeyup="subtotalProducto(event,this,this.value)" class="form-control" id="cantidad" name="cantidad"  step="any" required>
                         </div>
                     </div>
 

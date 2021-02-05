@@ -18,8 +18,6 @@ class Compras extends BaseController{
 		$this->detalle_compra=new DetalleCompraModel();
 		$this->configuracion=new ConfiguracionModel();
 		helper(['form']);
-
-		
 	}
 	public function index($activo=1){
 		$compras=$this->compras->where('activo',$activo)->findAll();

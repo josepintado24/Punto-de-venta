@@ -10,7 +10,7 @@ class ProductosModel extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['codigo', 'nombre','precio_venta','precio_compra','existencia','stock_minimo','inventariable','id_unidad','id_categoria','activo'];
+    protected $allowedFields = ['codigo', 'nombre','precio_venta','precio_compra','existencia', 'existencia_kg', 'stock_minimo','inventariable','id_unidad','id_categoria','activo'];
 
     protected $useTimestamps = true;
     protected $createdField  = 'fecha_alta';

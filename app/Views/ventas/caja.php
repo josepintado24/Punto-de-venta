@@ -16,7 +16,7 @@
                                 <div class="card-body">
                                     <!--__cliente__-->
                                     <h6 class="card-title">Cliente</h6>
-                                    <input type="hidden" id="id_cliente" name="id_cliente" class="id_cliente" value="1">
+                                    <input type="hidden" id="id_cliente" name="id_cliente" class="id_cliente" value="3">
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-4">
@@ -34,21 +34,40 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <!--__forma de pago__-->
-                                            <div class="col-6">
+                                            <div class="col-3">
                                                 <label>
                                                     Forma de pago:
                                                 </label>
+
                                                 <select name="forma_pagos" id="forma_pagos" class="form-control custom-select">
                                                     <option value="001">Efectivo</option>
                                                     <option value="002">Credito</option>
                                                 </select>
                                             </div>
                                             <!--__cantidad__-->
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <label class="label-ventas">
                                                     Cantidad:
                                                 </label>
-                                                <input class="form-control" value="1" class="text-center" id="cantidad" name="cantidad" type="number" step="any" required>
+                                                <input class="form-control" class="text-center" id="cantidad" name="cantidad" value="1" type="number" step="any" placeholder="cantidad" required>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="label-ventas">
+                                                    Adicional:
+                                                </label>
+                                                <div class="input-group">
+                                                    <input type="text" value="0" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="label-ventas">
+                                                    descuento:
+                                                </label>
+                                                <div class="input-group">
+                                                    <input type="text" value="0" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -60,7 +79,7 @@
                                                     Nombre de Producto:
                                                 </label>
                                                 <input type="hidden" id="id_producto" name="id_producto" />
-                                                <input onkeyup="agregarProducto(event,id_producto.value,cantidad.value, '<?php echo $idVentaTmp ?>')" placeholder="Escribe nombre producto" class="form-control" id="nombre" name="nombre" type="text">
+                                                <input placeholder="Escribe nombre producto" class="form-control" id="nombre" name="nombre" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -79,10 +98,10 @@
                                     Costo Adicional
                                 </div>
                                 <div class="card-body">
-                                    <h6 class="card-title">Envio</h6>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 ">
+                                                <label for="">Envio</label>
                                                 <input name="envio_nombre" id="envio_nombre" class="form-control form-control-sm" type="text" placeholder="nombre">
                                             </div>
                                         </div>
@@ -120,7 +139,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
                                                     </div>
-                                                    <input  name="otro_detalle_costo" id="otro_detalle_costo"  value="0" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                    <input name="otro_detalle_costo" id="otro_detalle_costo" value="0" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                                 </div>
                                             </div>
                                         </div>

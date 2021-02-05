@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ConfiguracionModel;
+use CodeIgniter\HTTP\Files\UploadedFile;
 
 class Configuracion extends BaseController{
 
@@ -61,6 +62,7 @@ class Configuracion extends BaseController{
 		$tienda_email=$this->configuracion->where('nombre', 'tienda_email')->first();
 		$tienda_direccion=$this->configuracion->where('nombre', 'tienda_direccion')->first();
 		$ticket_leyenda=$this->configuracion->where('nombre', 'ticket_leyenda')->first();
+		$ticket_wp=$this->configuracion->where('nombre', 'ticket_wp')->first();
 		$data=[
 			'titulo'=>'Configuracion',
 			'nombre'=>$nombre,
@@ -68,7 +70,8 @@ class Configuracion extends BaseController{
 			'tienda_telefono'=>$tienda_telefono,
 			'tienda_email'=>$tienda_email,
 			'tienda_direccion'=>$tienda_direccion,
-			'ticket_leyenda'=>$ticket_leyenda
+			'ticket_leyenda'=>$ticket_leyenda,
+			'ticket_wp'=>$ticket_wp
 		];
 		echo view('header');
 		echo view('configuracion/configuracion',$data);
@@ -161,6 +164,30 @@ class Configuracion extends BaseController{
 			$this->configuracion->whereIn('nombre',	['ticket_leyenda'])
 			->set(['valor'=>$this->request->getPost('ticket_leyenda')])
 			->update();
+
+			$this->configuracion->whereIn('nombre',	['ticket_wp'])
+			->set(['valor'=>$this->request->getPost('ticket_wp')])
+			->update();
+
+			
+			// $img->move(WRITEPATH.'/uploads');
+			$validacion=$this->validate([
+				'tienda_logo' =>[
+					'uploaded[tienda_logo]',
+					'mime_in[tienda_logo,image/png]',
+					'max_size[tienda_logo, 4096]'
+				]
+			]);
+			if($validacion){
+				$ruta_logo='images/logopdf.png';
+				if(file_exists($ruta_logo)){
+					unlink($ruta_logo);
+				}
+				$img=$this->request-> getFile('tienda_logo');
+				$img->move('./images', 'logopdf.png' );
+			}else{
+				return redirect()->to(base_url().'/configuracion');
+			}
 			return redirect()->to(base_url().'/configuracion');
 		}else{
 			return $this->editar($this->request->getPost('id'),$this->validator);
