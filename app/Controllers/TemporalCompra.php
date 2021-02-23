@@ -47,7 +47,7 @@ class TemporalCompra extends BaseController{
 		$res['total']=number_format($this->totalProductos($id_compra),2,'.',',');
 		echo json_encode($res);
 	}
-	public function insertaVenta($id_producto, $cantidad, $id_compra){
+	public function insertaVenta($id_producto, $cantidad, $id_compra,$adicional){
 		$error='';
 		$producto=$this->productos->where('id',$id_producto)->first();
 		if($producto){
@@ -57,7 +57,7 @@ class TemporalCompra extends BaseController{
 				$subtotal=$cantidad*$datosExisten->precio;
 				$this->temporal_compra->actualizarProductoCompra($id_producto,$id_compra,$cantidad,$subtotal);
 			}else{
-				$subtotal=$cantidad*$producto['precio_venta'];
+				$subtotal=($cantidad*$producto['precio_venta'])+$adicional;
 				$this->temporal_compra->save([
 					'folio'=> $id_compra,
 					'id_producto'=> $id_producto,
@@ -66,20 +66,39 @@ class TemporalCompra extends BaseController{
 					'nombre'=> $producto['nombre'],
 					'cantidad'=> $cantidad,
 					'subtotal'=>$subtotal,
+					'adicional'=>$adicional,
 
 				]);
 			}
 		}else{
 			$error='No existe el producto';
 		}
-		$res['datos']=$this->cargarProductos($id_compra);
+		$res['datos']=$this->cargarProductosVenta($id_compra);
 		$res['error']=$error;
 		$res['total']=number_format($this->totalProductos($id_compra),2,'.',',');
 		echo json_encode($res);
 	}
 
 	
+	public function cargarProductosVenta($id_compra){
+		$resultado =$this->temporal_compra->porCompra( $id_compra);
+		$fila='';
+		$numFila=0;
+		foreach($resultado as $row){
+			$numFila++;
+			$fila.="<tr id='fila".$numFila."'>";
+			$fila.="<td>".$numFila."</td>";
+			$fila.="<td>".$row['nombre']."</td>";
+			$fila.="<td>".number_format($row['precio'],2,'.',',')."</td>";
+			$fila.="<td>".$row['cantidad']."</td>";
+			$fila.="<td>".$row['adicional']."</td>";
+			$fila.="<td>".number_format($row['subtotal'],2,'.',',')."</td>";
+			$fila.="<td><a onclick=\"eliminaProducto(".$row['id_producto'].",'".$id_compra."')\" class='borrar'><span class='fas fa-fw fa-trash'></span></a></td>";
 
+			$fila.="</tr>";
+		}
+		return $fila;
+	}
 	public function cargarProductos($id_compra){
 		$resultado =$this->temporal_compra->porCompra( $id_compra);
 		$fila='';

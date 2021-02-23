@@ -10,7 +10,7 @@ class TemporalCompraModel extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['folio', 'id_producto','codigo','nombre','cantidad', 'precio', 'subtotal'];
+    protected $allowedFields = ['folio', 'id_producto','codigo','nombre','cantidad', 'precio', 'subtotal','adicional'];
 
     protected $useTimestamps = false;
     protected $createdField  = '';

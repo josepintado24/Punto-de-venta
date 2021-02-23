@@ -72,7 +72,7 @@ $user_session = session();
                 <ul class="ul mt-5" style="font-size: 16px;">
 
                     <!-- _________PRINCIPAL_________ -->
-                    <li class="estas li mt-3">
+                    <!-- <li class="estas li mt-3">
                         <a href="#">
                             <div class="p-2 bd-highlight">
                                 <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
@@ -88,12 +88,54 @@ $user_session = session();
                                 </div>
                             </div>
                         </a>
+                    </li> -->
+
+
+
+                    <!-- _________CAJA_________ -->
+                    <li class="li">
+                        <a id="click" href=" <?php echo base_url() . '/ventas/venta'; ?>" style="text-decoration: none;">
+                            <div class="p-2 bd-highlight">
+                                <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
+                                    <svg class="mr-4" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 2H10V3H6V2ZM6 8H10V9H6V8ZM6 10H10V11H6V10ZM15.1406 15H0.859375L2.10938 10H4V1C4 0.864583 4.02604 0.736979 4.07812 0.617188C4.13021 0.497396 4.20052 0.390625 4.28906 0.296875C4.3776 0.203125 4.48438 0.130208 4.60938 0.078125C4.73438 0.0260417 4.86458 0 5 0H11C11.1354 0 11.263 0.0260417 11.3828 0.078125C11.5026 0.130208 11.6094 0.200521 11.7031 0.289062C11.7969 0.377604 11.8698 0.484375 11.9219 0.609375C11.974 0.734375 12 0.864583 12 1V10H13.8906L15.1406 15ZM5 12H11V1H5V12ZM13.8594 14L13.1094 11H12V13H4V11H2.89062L2.14062 14H13.8594Z" fill="#C5C5C5" />
+                                    </svg>
+                                    <p class="p-hover">Caja</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- _________CLIENTES_________ -->
+                    <!--trabajado-->
+                    <li class="li">
+                        <a id="click" href="<?php echo base_url() . '/clientes'; ?>" style="text-decoration: none;">
+                            <div class="p-2 bd-highlight">
+                                <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
+                                    <svg class="mr-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path class="svg" d="M2.4 7.2C3.2825 7.2 4 6.4825 4 5.6C4 4.7175 3.2825 4 2.4 4C1.5175 4 0.8 4.7175 0.8 5.6C0.8 6.4825 1.5175 7.2 2.4 7.2ZM13.6 7.2C14.4825 7.2 15.2 6.4825 15.2 5.6C15.2 4.7175 14.4825 4 13.6 4C12.7175 4 12 4.7175 12 5.6C12 6.4825 12.7175 7.2 13.6 7.2ZM14.4 8H12.8C12.36 8 11.9625 8.1775 11.6725 8.465C12.68 9.0175 13.395 10.015 13.55 11.2H15.2C15.6425 11.2 16 10.8425 16 10.4V9.6C16 8.7175 15.2825 8 14.4 8ZM8 8C9.5475 8 10.8 6.7475 10.8 5.2C10.8 3.6525 9.5475 2.4 8 2.4C6.4525 2.4 5.2 3.6525 5.2 5.2C5.2 6.7475 6.4525 8 8 8ZM9.92 8.8H9.7125C9.1925 9.05 8.615 9.2 8 9.2C7.385 9.2 6.81 9.05 6.2875 8.8H6.08C4.49 8.8 3.2 10.09 3.2 11.68V12.4C3.2 13.0625 3.7375 13.6 4.4 13.6H11.6C12.2625 13.6 12.8 13.0625 12.8 12.4V11.68C12.8 10.09 11.51 8.8 9.92 8.8ZM4.3275 8.465C4.0375 8.1775 3.64 8 3.2 8H1.6C0.7175 8 0 8.7175 0 9.6V10.4C0 10.8425 0.3575 11.2 0.8 11.2H2.4475C2.605 10.015 3.32 9.0175 4.3275 8.465Z" fill="#9FA2B4" />
+                                    </svg>
+                                    <p class="p-hover">Clientes</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- _________VENTAS_________ -->
+                    <li class="li">
+                        <a id="click" href="<?php echo base_url() . '/ventas'; ?>" style="text-decoration: none;">
+                            <div class="p-2 bd-highlight">
+                                <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
+                                    <svg class="mr-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path class="svg" d="M3.55556 5.33334H12.4444V10.6667H3.55556V5.33334ZM14.6667 8C14.6667 8.73639 15.2636 9.33334 16 9.33334V12C16 12.7364 15.4031 13.3333 14.6667 13.3333H1.33333C0.596944 13.3333 0 12.7364 0 12V9.33334C0.736389 9.33334 1.33333 8.73639 1.33333 8C1.33333 7.26362 0.736389 6.66667 0 6.66667V4.00001C0 3.26362 0.596944 2.66667 1.33333 2.66667H14.6667C15.4031 2.66667 16 3.26362 16 4.00001V6.66667C15.2636 6.66667 14.6667 7.26362 14.6667 8ZM13.3333 5.11112C13.3333 4.74292 13.0349 4.44445 12.6667 4.44445H3.33333C2.96514 4.44445 2.66667 4.74292 2.66667 5.11112V10.8889C2.66667 11.2571 2.96514 11.5556 3.33333 11.5556H12.6667C13.0349 11.5556 13.3333 11.2571 13.3333 10.8889V5.11112Z" fill="#9FA2B4" />
+                                    </svg>
+                                    <p class="p-hover">Ventas</p>
+                                </div>
+                            </div>
+                        </a>
                     </li>
 
                     <!-- _________COMPRAS_________ -->
                     <!--trabajado-->
-
-
                     <li class="li">
                         <a class="m-compras-list" id="click" href="#" style="text-decoration: none;">
                             <div class="p-2 bd-highlight">
@@ -129,8 +171,6 @@ $user_session = session();
 
                     </li>
 
-                    <!-- _________CLIENTES_________ -->
-                    <!--trabajado-->
                     <li class="li">
                         <a id="click" href="<?php echo base_url() . '/clientes'; ?>" style="text-decoration: none;">
                             <div class="p-2 bd-highlight">
@@ -138,7 +178,7 @@ $user_session = session();
                                     <svg class="mr-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path class="svg" d="M2.4 7.2C3.2825 7.2 4 6.4825 4 5.6C4 4.7175 3.2825 4 2.4 4C1.5175 4 0.8 4.7175 0.8 5.6C0.8 6.4825 1.5175 7.2 2.4 7.2ZM13.6 7.2C14.4825 7.2 15.2 6.4825 15.2 5.6C15.2 4.7175 14.4825 4 13.6 4C12.7175 4 12 4.7175 12 5.6C12 6.4825 12.7175 7.2 13.6 7.2ZM14.4 8H12.8C12.36 8 11.9625 8.1775 11.6725 8.465C12.68 9.0175 13.395 10.015 13.55 11.2H15.2C15.6425 11.2 16 10.8425 16 10.4V9.6C16 8.7175 15.2825 8 14.4 8ZM8 8C9.5475 8 10.8 6.7475 10.8 5.2C10.8 3.6525 9.5475 2.4 8 2.4C6.4525 2.4 5.2 3.6525 5.2 5.2C5.2 6.7475 6.4525 8 8 8ZM9.92 8.8H9.7125C9.1925 9.05 8.615 9.2 8 9.2C7.385 9.2 6.81 9.05 6.2875 8.8H6.08C4.49 8.8 3.2 10.09 3.2 11.68V12.4C3.2 13.0625 3.7375 13.6 4.4 13.6H11.6C12.2625 13.6 12.8 13.0625 12.8 12.4V11.68C12.8 10.09 11.51 8.8 9.92 8.8ZM4.3275 8.465C4.0375 8.1775 3.64 8 3.2 8H1.6C0.7175 8 0 8.7175 0 9.6V10.4C0 10.8425 0.3575 11.2 0.8 11.2H2.4475C2.605 10.015 3.32 9.0175 4.3275 8.465Z" fill="#9FA2B4" />
                                     </svg>
-                                    <p class="p-hover">Clientes</p>
+                                    <p class="p-hover">Proveedores</p>
                                 </div>
                             </div>
                         </a>
@@ -165,42 +205,25 @@ $user_session = session();
                                     <div class="div-prod">
                                         <p class="p-prod">Productos</p>
                                     </div>
-                                </a></li>
+                                </a>
+                            </li>
+                            <li class="li-config d-flex justify-content-end"><a href="<?php echo base_url() . '/precios'; ?>">
+                                    <div class="div-config">
+                                        <p class="p-config">Precios rápidos</p>
+                                    </div>
+                                </a>
+                            </li>
                             <li class="li-prod d-flex justify-content-end"><a href="<?php echo base_url(); ?>/unidades">
                                     <div class="div-prod">
                                         <p class="p-prod">Unidades</p>
                                     </div>
-                                </a></li>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
-                    <!-- _________CAJA_________ -->
-                    <li class="li">
-                        <a id="click" href=" <?php echo base_url() . '/ventas/venta'; ?>" style="text-decoration: none;">
-                            <div class="p-2 bd-highlight">
-                                <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
-                                    <svg class="mr-4" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6 2H10V3H6V2ZM6 8H10V9H6V8ZM6 10H10V11H6V10ZM15.1406 15H0.859375L2.10938 10H4V1C4 0.864583 4.02604 0.736979 4.07812 0.617188C4.13021 0.497396 4.20052 0.390625 4.28906 0.296875C4.3776 0.203125 4.48438 0.130208 4.60938 0.078125C4.73438 0.0260417 4.86458 0 5 0H11C11.1354 0 11.263 0.0260417 11.3828 0.078125C11.5026 0.130208 11.6094 0.200521 11.7031 0.289062C11.7969 0.377604 11.8698 0.484375 11.9219 0.609375C11.974 0.734375 12 0.864583 12 1V10H13.8906L15.1406 15ZM5 12H11V1H5V12ZM13.8594 14L13.1094 11H12V13H4V11H2.89062L2.14062 14H13.8594Z" fill="#C5C5C5" />
-                                    </svg>
-                                    <p class="p-hover">Caja</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
 
-                     <!-- _________VENTAS_________ -->
-                     <li class="li">
-                        <a id="click" href="<?php echo base_url() . '/ventas'; ?>" style="text-decoration: none;">
-                            <div class="p-2 bd-highlight">
-                                <div class="d-flex justify-content-start align-items-center ml-4 m-2 find-click">
-                                    <svg class="mr-4" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path class="svg" d="M3.55556 5.33334H12.4444V10.6667H3.55556V5.33334ZM14.6667 8C14.6667 8.73639 15.2636 9.33334 16 9.33334V12C16 12.7364 15.4031 13.3333 14.6667 13.3333H1.33333C0.596944 13.3333 0 12.7364 0 12V9.33334C0.736389 9.33334 1.33333 8.73639 1.33333 8C1.33333 7.26362 0.736389 6.66667 0 6.66667V4.00001C0 3.26362 0.596944 2.66667 1.33333 2.66667H14.6667C15.4031 2.66667 16 3.26362 16 4.00001V6.66667C15.2636 6.66667 14.6667 7.26362 14.6667 8ZM13.3333 5.11112C13.3333 4.74292 13.0349 4.44445 12.6667 4.44445H3.33333C2.96514 4.44445 2.66667 4.74292 2.66667 5.11112V10.8889C2.66667 11.2571 2.96514 11.5556 3.33333 11.5556H12.6667C13.0349 11.5556 13.3333 11.2571 13.3333 10.8889V5.11112Z" fill="#9FA2B4" />
-                                    </svg>
-                                    <p class="p-hover">Ventas</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
+
 
 
                     <div class="dropdown-divider mt-4 mb-4"></div>
@@ -263,12 +286,7 @@ $user_session = session();
                                     </div>
                                 </a>
                             </li>
-                            <li class="li-config d-flex justify-content-end"><a href="<?php echo base_url() . '/precios'; ?>">
-                                    <div class="div-config">
-                                        <p class="p-config">precios Productos</p>
-                                    </div>
-                                </a>
-                            </li>
+
                         </ul>
                     </li>
 

@@ -252,6 +252,7 @@ class Productos extends BaseController{
 			foreach($productos as $row){
 				$data['id']=$row['id'];
 				$data['value']=$row['nombre'];
+				$data['stock']=$row['existencia'];
 				array_push($returnData,$data);
 
 			}
