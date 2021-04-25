@@ -17,7 +17,7 @@
                                     <!--__cliente__-->
                                     <h6 class="card-title">Cliente</h6>
                                     <input type="hidden" id="id_cliente" name="id_cliente" class="id_cliente" value="3">
-                                    <div class="form-group">
+                                    <div class="form-group ">
                                         <div class="row">
                                             <div class="col-4">
                                                 <input class="form-control" type="text" id="cliente" name="cliente" placeholder="Escribe el nombre del cliente" value="Público en general" onkeyup="" autocomplete="off" />
@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <!--__forma de pago__-->
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label>
                                                     Forma de pago:
                                                 </label>
@@ -45,13 +45,13 @@
                                                 </select>
                                             </div>
                                             <!--__cantidad__-->
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label class="label-ventas">
                                                     Cantidad:
                                                 </label>
                                                 <input class="form-control" class="text-center" id="cantidad" name="cantidad" value="1" type="number" step="any" placeholder="cantidad" required>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label class="label-ventas">
                                                     Adicional:
                                                 </label>
@@ -65,29 +65,36 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <!--__nombre de producto__-->
-                                            <div class="col-6">
+                                            <div class="col-8">
                                                 <label class="label-ventas">
                                                     Nombre de Producto:
                                                 </label>
                                                 <input type="hidden" id="id_producto" name="id_producto" />
                                                 <input placeholder="Escribe nombre producto" class="form-control" id="nombre" name="nombre" type="text">
+                                                <!--__*ERROR*__-->
+                                                <label for="error" id="resultado_error" class="resultado_error" name="resultado_error" style="color:red">
+
+                                                </label>
                                             </div>
                                             <!--__nombre de producto__-->
-                                            <div class="col-6">
-                                                <label class="label-ventas">
-                                                    Stock actual:
+                                            <div class="col-4">
+                                                <label class="stock_producto01" name="stock_producto01" id="stock_producto01">
+                                                    Stock :
                                                 </label>
 
-                                                <input placeholder="Escribe nombre producto" class="form-control" id="stock" name="stock" type="text">
+                                                <input placeholder="stock" class="form-control" id="stock" name="stock" type="text">
                                             </div>
+                                            
+                                            <!-- <div class="col-3">
+                                                <label for="error" id="resultado_error" class="resultado_error" name="resultado_error" style="color:red">
+
+                                                </label>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--__*ERROR*__-->
-                            <div class="col-sm-2">
-                                <label for="codigo" id="resultado_error" style="color:red"></label>
-                            </div>
+
                         </div>
 
                         <!--__****FORMULARIO ENVÍOS****__-->
@@ -225,26 +232,28 @@
             $("#id_producto").val(ui.item.id);
             $("#nombre").val(ui.item.value);
             $("#stock").val(ui.item.stock);
+            $("#stock_producto01").text("Stock de " + ui.item.value);
             setTimeout(
                 function() {
                     e = jQuery.Event("keypress");
                     e.which = 13
-                    agregarProducto(e, ui.item.id, cantidad.value, '<?php echo $idVentaTmp; ?>',adicional.value);
+                    agregarProducto(e, ui.item.id, cantidad.value, '<?php echo $idVentaTmp; ?>', adicional.value);
                 }
             )
         }
     });
 
-    function agregarProducto(e, id_producto, cantidad, id_venta,adicional) {
+
+    function agregarProducto(e, id_producto, cantidad, id_venta, adicional) {
         let enterKey = 13;
         if (nombre != '') {
             if (e.which == enterKey) {
                 if (id_producto != null && id_producto != 0 && cantidad > 0) {
                     $.ajax({
-                        url: '<?php echo base_url(); ?>/TemporalCompra/insertaVenta/' + id_producto + "/" + cantidad + "/" + id_venta+"/"+adicional,
+                        url: '<?php echo base_url(); ?>/TemporalCompra/insertaVenta/' + id_producto + "/" + cantidad + "/" + id_venta + "/" + adicional,
                         success: function(resultado) {
                             if (resultado == 0) {
-
+                                alert("No hay stock")
                             } else {
                                 var resultado = JSON.parse(resultado);
                                 if (resultado.error == '') {
@@ -254,6 +263,10 @@
                                     $('#nombre').val('');
                                     $('#id_producto').val('');
                                     $('#cantidad').val('1');
+                                    $('#adicional').val('0');
+                                    $("#resultado_error").text("");
+                                } else {
+                                    $("#resultado_error").text(resultado.error);
                                 }
                             }
                         }

@@ -1,74 +1,83 @@
 <?php $id_compra = uniqid(); ?>
 <div id="layoutSidenav_content">
     <main>
-
-
-        <!-- ____Button Regresar____ -->
-        <a href="<?php echo base_url(); ?>/compras" class="btn btn-info mt-4 ml-5">
-            <svg class="mr-2" width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.3125 18.4375L0.5 10.625L0.5 8.4375L8.3125 0.624999L10.5313 2.8125L5.40625 7.96875L22.8125 7.96875L22.8125 11.0938L5.40625 11.0937L10.5625 16.25L8.3125 18.4375Z" fill="#E0E0E0" />
-            </svg>
-            Regresar
-        </a>
-
-
         <div class="container-fluid">
-
             <form method="POST" id="form_compra" name="form_compra" action="<?php echo base_url(); ?>/compras/guarda" autocomplete="off">
+                <div class="form-group">
+                    <div class="row">
+                        <!--__****FORMULARIO 1****__-->
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    Compras
+                                </div>
+                                <div class="card-body">
 
-                <!-- ____CÓDIGO AGREGAR COMPRA____ -->
-                <div class="container-fluid mt-3">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-lg-4 col-md-6">
+                                                <input type="hidden" id="id_proveedor" name="id_proveedor" class="id_proveedor" value="1">
+                                                <label for="proveedor"></label>
+                                                <input class="form-control form-control-sm" id="proveedor" name="proveedor" type="text" placeholder="Proveedor en general" value="Proveedor en general" required>
+                                                
+                                            </div>
+                                            <div class="col-sm-12 col-lg-4 col-md-6">
+                                                <label for="wp"></label>
+                                                <input class="form-control form-control-sm" id="wp" name="wp" type="text" disabled placeholder="Whatsapp">
+                                            </div>
+                                            <div class="col-sm-12 col-lg-4 col-md-6">
+                                                <label for="correo"></label>
+                                                <input class="form-control form-control-sm" id="correo" name="correo" type="text" disabled placeholder="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-lg-4 col-md-6">
+                                                <input type="hidden" id="id_producto" name="id_producto" />
+                                                <input type="hidden" id="id_compra" name="id_compra" value="<?php echo $id_compra; ?>" />
+                                                <label for="">Nombre de Producto</label>
+                                                <input onkeyup="buscarProducto(event,this,id_producto.value)" placeholder="Escribe nombre producto" class="form-control" id="nombre" name="nombre" type="text" required>
+                                                <label for="nombre" id="resultado_error" style="color: red"></label>
+                                            </div>
+                                            <div class="col-sm-12 col-lg-3 col-md-6">
+                                                <label for="">Precio de Compra</label>
+                                                <input class="form-control" id="precio_compra" name="precio_compra" type="number" step="any" required disabled>
+                                            </div>
+                                            <div class="col-sm-12 col-lg-2 col-md-6">
+                                                <label for="">Cantidad</label>
+                                                <input onkeyup="subtotalProducto(event,this,this.value)" class="form-control" id="cantidad" name="cantidad" step="any" required>
+                                            </div>
+                                            <div class="col-sm-12 col-lg-3 col-md-6">
+                                                <label for="">Subtotal</label>
+                                                <input class="form-control" id="subtotal" name="subtotal" type="number" step="any" required disabled>
+                                            </div>
 
-                    <h2 class="mt-2 mb-5 text-center">AGREGAR COMPRA</h2>
+                                        </div>
 
-                    <!-- ____agregar items____ -->
-                    <div class="row mb-3">
+                                    </div>
+                                    <!-- ____Button Agregar____ -->
+                                    <button onclick="agregarProducto(id_producto.value,cantidad.value, '<?php echo $id_compra; ?>' )" id="agregar_producto" name="agregar_producto" type="button" class="btn btn-warning mr-3 ml-auto">
+                                        Agregar
+                                    </button>
 
-                        <!-- ____Nombre de Producto____ -->
-                        <div class="col-4 col-sm-4">
-                            <input type="hidden" id="id_producto" name="id_producto" />
-                            <input type="hidden" id="id_compra" name="id_compra" value="<?php echo $id_compra; ?>" />
-                            <label for="">Nombre de Producto</label>
-                            <input onkeyup="buscarProducto(event,this,id_producto.value)" placeholder="Escribe nombre producto" class="form-control" id="nombre" name="nombre" type="text" autofocus required>
-                            <label for="nombre" id="resultado_error" style="color: red"></label>
-                        </div>
 
-                        <!-- ____Precio de Compra____ -->
-                        <div class="col-4 col-sm-4">
-                            <label for="">Precio de Compra</label>
-                            <input class="form-control" id="precio_compra" name="precio_compra" type="number" step="any" required disabled>
-                        </div>
-
-                        <!-- ____Cantidad____ -->
-                        <div class="cantidad-compra col-2 ml-0">
-                            <label for="">Cantidad</label>
-                            <input onkeyup="subtotalProducto(event,this,this.value)" class="form-control" id="cantidad" name="cantidad"  step="any" required>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="row d-flex align-items-end mb-5">
-
-                        <!-- ____Precio de Venta____ -->
-                        <div class="col-4 col-sm-4">
-                            <label for="">Subtotal</label>
-                            <input class="form-control" id="subtotal" name="subtotal" type="number" step="any" required disabled>
-                        </div>
-
-                        <!-- ____Button Agregar____ -->
-
-                        <button onclick="agregarProducto(id_producto.value,cantidad.value, '<?php echo $id_compra; ?>' )" id="agregar_producto" name="agregar_producto" type="button" class="btn btn-warning mr-3 ml-auto">
-                            Agregar Producto
-                        </button>
-                    </div>
-
                 </div>
 
-                <div class="dropdown-divider mt-4 mb-4"></div>
+
+
+                <!-- <div class="dropdown-divider mt-4 mb-4"></div> -->
 
                 <!-- ____Tabla de Compra____ -->
 
                 <section class="container-fluid">
-                    <table id="tablaProductos" class="table table-sm">
+                    <table id="tablaProductos" class="table ">
+                    <div class="table-responsive">
+                    <div class="table">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
@@ -83,6 +92,8 @@
                         <tbody>
 
                         </tbody>
+                        </div>
+                        </div>
                     </table>
                 </section>
                 <div>
@@ -99,8 +110,8 @@
                         </button>
                     </div>
                 </div>
-
             </form>
+
 
 
 
@@ -111,6 +122,17 @@
     <script src="<?php echo base_url(); ?>/js/jquery.js" crossorigin="anonymous"></script>
     <script src="<?php echo base_url(); ?>/js/jquery-ui.min.js" crossorigin="anonymous"></script>
     <script>
+        $("#proveedor").autocomplete({
+            source: "<?php echo base_url() . '/proveedores/autocompleteData'; ?>",
+            minLength: 3,
+            select: function(event, ui) {
+                event.preventDefault();
+                $("#id_proveedor").val(ui.item.id);
+                $("#proveedor").val(ui.item.value);
+                $("#wp").val(ui.item.wp);
+                $("#correo").val(ui.item.email);
+            }
+        });
         $("#nombre").autocomplete({
             source: "<?php echo base_url() . '/productos/autocompleteData'; ?>",
             minLength: 3,

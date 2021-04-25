@@ -164,25 +164,28 @@ class Ventas extends BaseController
 			$pdf->MultiCell(50, 5, utf8_decode($datosventa['otro_detalle_costo']), 0, 'L', 0);
 		}
 		$pdf->ln();
-		$pdf->SetFont('Arial', 'B', 7);
-		$pdf->Cell(7, 5, 'Cant.', 0, 0, 'L');
-		$pdf->Cell(35, 5, 'Nombre', 0, 0, 'L');
-		$pdf->Cell(15, 5, 'Precio', 0, 0, 'L');
-		$pdf->Cell(15, 5, 'Importe', 0, 1, 'L');
-		$pdf->SetFont('Arial', '', 7);
+		$pdf->SetFont('Arial', 'B', 5);
+		$pdf->Cell(5, 5, 'Cant.', 0, 0, 'L');
+		$pdf->Cell(30, 5, 'Nom', 0, 0, 'L');
+		$pdf->Cell(12, 5, 'Precio', 0, 0, 'L');
+		$pdf->Cell(12, 5, 'Ads', 0, 0, 'L');
+		$pdf->Cell(12, 5, 'Importe', 0, 1, 'L');
+		$pdf->SetFont('Arial', '', 5);
 
 
 		foreach ($detalle_venta as $row) {
 			if ($row['cantidad'] < 1) {
-				$pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
-				$pdf->Cell(35, 5, utf8_decode($row['nombre']), 0, 0, 'L');
-				$pdf->Cell(15, 5, '------', 0, 0, 'L');
-				$pdf->Cell(15, 5, '$ ' . number_format((($row['precio'] * $row['cantidad']) + $row['adicional']), 2, '.', ','), 0, 1, 'R');
+				$pdf->Cell(5, 5, $row['cantidad'], 0, 0, 'L');
+				$pdf->Cell(30, 5, utf8_decode($row['nombre']), 0, 0, 'L');
+				$pdf->Cell(12, 5, '------', 0, 0, 'L');
+				$pdf->Cell(12, 5, '------', 0, 0, 'L');
+				$pdf->Cell(10, 5, '$ ' . number_format((($row['precio'] * $row['cantidad']) + $row['adicional']), 2, '.', ','), 0, 1, 'R');
 			} else {
-				$pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
-				$pdf->Cell(35, 5, utf8_decode($row['nombre']), 0, 0, 'L');
-				$pdf->Cell(15, 5, '$ ' . $row['precio'], 0, 0, 'L');
-				$pdf->Cell(15, 5, '$ ' . number_format(($row['precio'] * $row['cantidad']), 2, '.', ','), 0, 1, 'R');
+				$pdf->Cell(5, 5, $row['cantidad'], 0, 0, 'L');
+				$pdf->Cell(30, 5, utf8_decode($row['nombre']), 0, 0, 'L');
+				$pdf->Cell(12, 5, '$ ' . $row['precio'], 0, 0, 'L');
+				$pdf->Cell(12, 5, '$ ' . $row['adicional'], 0, 0, 'L');
+				$pdf->Cell(10, 5, '$ ' . number_format((($row['precio'] * $row['cantidad']) + $row['adicional']), 2, '.', ','), 0, 1, 'R');
 			}
 
 

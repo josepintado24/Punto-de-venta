@@ -20,10 +20,11 @@ class Compras extends BaseController{
 		helper(['form']);
 	}
 	public function index($activo=1){
-		$compras=$this->compras->where('activo',$activo)->findAll();
-		$data=[
-			'titulo'=>'Compras',
-			 'datos'=>$compras
+		
+		$datos = $this->compras->obtener();
+		$data = [
+			'titulo' => 'Compras',
+			'datos' => $datos
 		];
 		echo view('header');
 		echo view('compras/compras',$data);
@@ -39,13 +40,11 @@ class Compras extends BaseController{
 
 	public function guarda(){
 		$id_compra=$this->request->getPost('id_compra');
+		$id_proveedor=$this->request->getPost('id_proveedor');
 		$total=preg_replace('/[\$,]/','', $this->request->getPost('total'));
 		$session=session();
-		
-		$resultadoId=$this->compras->insertaCompra($id_compra, $total,$session->id_usuario);
+		$resultadoId=$this->compras->insertaCompra($id_compra, $total,$session->id_usuario,$id_proveedor);
 		$this->tempral_compra=new TemporalCompraModel();
-		
-
 		if($resultadoId){
 			$resultadoCompra=$this->tempral_compra->porCompra($id_compra);
 			foreach($resultadoCompra as $row){
