@@ -13,17 +13,21 @@ use App\Models\ClientesModel;
 class Ventas extends BaseController
 {
 
-	protected $ventas, $tempral_compra, $detalle_venta, $productos, $configuracion, $clientes;
+	protected $ventas, $tempral_compra, $detalle_venta, $productos, $configuracion, $clientes, $session;
 	public function __construct()
 	{
 		$this->ventas = new VentasModel();
 		$this->detalle_venta = new DetalleVentaModel();
 		$this->configuracion = new ConfiguracionModel();
 		$this->productos = new ProductosModel();
+		$this->session=session();
 		helper(['form']);
 	}
 	public function index()
 	{
+		if (!isset($this->session->id_usuario)){
+			return redirect()->to(base_url());
+		}
 		$datos = $this->ventas->obtener();
 		$data = [
 			'titulo' => 'ventas',
@@ -35,12 +39,18 @@ class Ventas extends BaseController
 	}
 	public function venta()
 	{
+		if (!isset($this->session->id_usuario)){
+			return redirect()->to(base_url());
+		}
 		echo view('header');
 		echo view('ventas/caja');
 		echo view('footer');
 	}
 	public function guarda()
 	{
+		if (!isset($this->session->id_usuario)){
+			return redirect()->to(base_url());
+		}
 		$activado_costo = $this->request->getPost('activado_costo');
 		$descuento = $this->request->getPost('descuento');
 		$id_venta = $this->request->getPost('id_venta');

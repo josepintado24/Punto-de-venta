@@ -272,8 +272,10 @@ class Usuarios extends BaseController{
 						'id_caja'=>$usuarioData['id_caja'],
 						'id_rol'=>$usuarioData['id_rol']
 					];
-					$session=session();
+					$session = \Config\Services::session();
 					$session->set($sesionDatos);
+					$session->markAsTempdata('id_usuario', 864000); // Expire in 24 h
+					$session->markAsTempdata('nombre', 864000); // Expire in 24 h
 					return redirect()->to(base_url().'/precios');
 				}else{
 					$data['error']='Las contraseñas no existe';

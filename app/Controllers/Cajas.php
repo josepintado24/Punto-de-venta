@@ -6,11 +6,11 @@ use App\Models\CajasModel;
 
 class Cajas extends BaseController{
 
-	protected $cajas;
-	protected $reglas;
+	protected $cajas, $reglas, $session;
 
 	public function __construct(){
 		$this->cajas=new CajasModel;
+		$this->session=session();
 		helper(['form']);
 
 		$this->reglas=[
@@ -40,6 +40,9 @@ class Cajas extends BaseController{
 		];
 	}
 	public function index($activo=1){
+		if (!isset($this->session->id_usuario)){
+			return redirect()->to(base_url());
+		}
 		$cajas=$this->cajas->where('activo',$activo)->findAll();
 		$data=[
 			'titulo'=>'cajas',
