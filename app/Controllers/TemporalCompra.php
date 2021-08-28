@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\TemporalCompraModel;
 use App\Models\ProductosModel;
+// use App\Models\UnidadesModel;
 
 class TemporalCompra extends BaseController
 {
@@ -16,10 +17,11 @@ class TemporalCompra extends BaseController
 	{
 		$this->temporal_compra = new TemporalCompraModel;
 		$this->productos = new ProductosModel;
+		// $this->unidades = new UnidadesModel;
 	}
 
 
-	public function inserta($id_producto, $cantidad, $id_compra)
+	public function inserta($id_producto, $cantidad, $id_compra,$destino)
 	{
 		$error = '';
 		$producto = $this->productos->where('id', $id_producto)->first();
@@ -45,7 +47,7 @@ class TemporalCompra extends BaseController
 		} else {
 			$error = 'No existe el producto';
 		}
-		$res['datos'] = $this->cargarProductos($id_compra);
+		$res['datos'] = $this->cargarProductos($id_compra,$destino);
 		$res['error'] = $error;
 		$res['total'] = number_format($this->totalProductos($id_compra), 2, '.', ',');
 		echo json_encode($res);
@@ -251,29 +253,48 @@ class TemporalCompra extends BaseController
 			$fila .= "<td>" . $numFila . "</td>";
 			$fila .= "<td>" . $row['nombre'] . "</td>";
 			$fila .= "<td>" . number_format($row['precio'], 2, '.', ',') . "</td>";
-			$fila .= "<td>" . $row['cantidad'] . "</td>";
-			$fila .= "<td>" . $row['adicional'] . "</td>";
+			$producto = $this->productos->where('id', $row['id_producto'])->first();
+			if ($producto['id_unidad']==4){
+				$fila .= "<td>" . intval($row['cantidad']). "</td>";
+			}else{
+
+				$fila .= "<td>" . $row['cantidad']. "</td>";
+			}
+			$fila .= "<td>" .  number_format($row['adicional'], 2, '.', ',') . "</td>";
 			$fila .= "<td>" . number_format($row['subtotal'], 2, '.', ',') . "</td>";
-			$fila .= "<td><a onclick=\"eliminaProducto(" . $row['id_producto'] . ",'" . $id_compra . "')\" class='borrar'><span class='fas fa-fw fa-trash'></span></a></td>";
+			$fila .= "<td><a onclick=\"eliminaProducto(" . $row['id_producto'] . ",'" . $id_compra . "')\" class='borrar btn btn-sm btn-neutral'><span class='fas fa-fw fa-trash'></span></a></td>";
 
 			$fila .= "</tr>";
 		}
 		return $fila;
 	}
-	public function cargarProductos($id_compra)
+	public function cargarProductos($id_compra, $destino="ventas")
 	{
 		$resultado = $this->temporal_compra->porCompra($id_compra);
 		$fila = '';
 		$numFila = 0;
 		foreach ($resultado as $row) {
+			
 			$numFila++;
 			$fila .= "<tr id='fila" . $numFila . "'>";
 			$fila .= "<td>" . $numFila . "</td>";
 			$fila .= "<td>" . $row['nombre'] . "</td>";
 			$fila .= "<td>" . number_format($row['precio'], 2, '.', ',') . "</td>";
-			$fila .= "<td>" . $row['cantidad'] . "</td>";
-			$fila .= "<td>" . number_format($row['subtotal'], 2, '.', ',') . "</td>";
-			$fila .= "<td><a onclick=\"eliminaProducto(" . $row['id_producto'] . ",'" . $id_compra . "')\" class='borrar'><span class='fas fa-fw fa-trash'></span></a></td>";
+			$producto = $this->productos->where('id', $row['id_producto'])->first();
+			if ($producto['id_unidad']==4){
+				$fila .= "<td>" . intval($row['cantidad']). "</td>";
+			}else{
+
+				$fila .= "<td>" . $row['cantidad']. "</td>";
+			}
+			if ($destino=="ventas"){
+				$fila .= "<td>" . number_format($row['adicional'], 2, '.', ','). "</td>";
+			}else{
+
+			}
+			
+			$fila .= "<td>" . number_format($row['subtotal']+$row['adicional'], 2, '.', ',') . "</td>";
+			$fila .= "<td><a onclick=\"eliminaProducto(" . $row['id_producto'] . ",'" . $id_compra . "')\" class='borrar btn btn-sm btn-neutral'><span class='fas fa-fw fa-trash'></span></a></td>";
 
 			$fila .= "</tr>";
 		}
@@ -290,7 +311,7 @@ class TemporalCompra extends BaseController
 		}
 		return $total;
 	}
-	public function eliminar($id_producto, $id_compra)
+	public function eliminar($id_producto, $id_compra,$destino)
 	{
 		$datosExisten = $this->temporal_compra->porIdProductoCompra($id_producto, $id_compra);
 		if ($datosExisten) {
@@ -303,7 +324,7 @@ class TemporalCompra extends BaseController
 			}
 		}
 
-		$res['datos'] = $this->cargarProductos($id_compra);
+		$res['datos'] = $this->cargarProductos($id_compra,$destino);
 		$res['error'] = '';
 		$res['total'] = number_format($this->totalProductos($id_compra), 2, '.', ',');
 		echo json_encode($res);

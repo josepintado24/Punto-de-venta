@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://maximiliano.ventas/tienda/public/';
+	public $baseURL = 'http://josepintado.test/pos/';
 
 	/*
 	|--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ class App extends BaseConfig
 	| variable so that it is blank.
 	|
 	*/
-	public $indexPage = 'index.php';
+	public $indexPage = '';
 
 	/*
 	|--------------------------------------------------------------------------

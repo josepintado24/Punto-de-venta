@@ -1,12 +1,16 @@
-<div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="panel">
-                    <div class="embed-responsive embed-responsive-4by3" style="margin-top: 30px;">
-                        <iframe class="embed-responsive-item" src="<?php echo base_url()."/ventas/generarTicketPdf/".$id_venta ?>" ></iframe>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <main>
+                    <div class="container-fluid">
+
+                        <div class="embed-responsive embed-responsive-1by1 mt-3">
+                            <iframe class="embed-responsive-item" src="<?php echo base_url()."/ventas/generarTicketPdf/".$id_venta ?>"></iframe>
+                        </div>
                     </div>
-                </div>
+                </main>
             </div>
         </div>
-    <main>
+    </div>

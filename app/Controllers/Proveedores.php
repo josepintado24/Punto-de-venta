@@ -37,7 +37,7 @@ class Proveedores extends BaseController{
 	public function index($activo=1){
 		$proveedores=$this->proveedores->where('activo',$activo)->findAll();
 		$data=[
-			'titulo'=>'proveedores',
+			'titulo'=>'Proveedores',
 			 'datos'=>$proveedores
 		];
 		echo view('header');

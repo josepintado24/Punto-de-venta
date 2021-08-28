@@ -30,7 +30,7 @@ class Ventas extends BaseController
 		}
 		$datos = $this->ventas->obtener();
 		$data = [
-			'titulo' => 'ventas',
+			'titulo' => 'Ventas',
 			'datos' => $datos
 		];
 		echo view('header');
@@ -42,8 +42,11 @@ class Ventas extends BaseController
 		if (!isset($this->session->id_usuario)){
 			return redirect()->to(base_url());
 		}
+		$data = [
+			'titulo' => 'Vender'
+		];
 		echo view('header');
-		echo view('ventas/caja');
+		echo view('ventas/caja',$data);
 		echo view('footer');
 	}
 	public function guarda()
@@ -109,9 +112,10 @@ class Ventas extends BaseController
 		$pdf->SetMargins(5, 5, 5);
 		$pdf->SetTitle("venta");
 		$pdf->SetFont('Arial', 'B', 10);
-		$pdf->Cell(70, 5, utf8_decode($nombreTienda), 0, 1, 'C');
+		$pdf->ln(3);
+		// $pdf->Cell(70, 5, utf8_decode($nombreTienda), 0, 1, 'C');
 		$pdf->SetFont('Arial', 'B', 7);
-		$pdf->image(base_url() . '/images/logopdf.png', 5, 5, 20, 10, 'PNG');
+		$pdf->image(base_url() . '/public/assets/img/brand/negro.png', 23, 5, 30, 10, 'PNG');
 		$pdf->Cell(70, 5, utf8_decode($direccionTienda), 0, 1, 'C');
 		$pdf->MultiCell(70, 4, "whatsapp: " . utf8_decode($ticket_wp), 0, 'C', 0);
 		$pdf->MultiCell(70, 4, "telefono: " . utf8_decode($tienda_telefono), 0, 'C', 0);
@@ -185,13 +189,13 @@ class Ventas extends BaseController
 
 		foreach ($detalle_venta as $row) {
 			if ($row['cantidad'] < 1) {
-				$pdf->Cell(5, 5, $row['cantidad'], 0, 0, 'L');
+				$pdf->Cell(5, 5, intval($row['cantidad']), 0, 0, 'L');
 				$pdf->Cell(30, 5, utf8_decode($row['nombre']), 0, 0, 'L');
 				$pdf->Cell(12, 5, '------', 0, 0, 'L');
 				$pdf->Cell(12, 5, '------', 0, 0, 'L');
 				$pdf->Cell(10, 5, '$ ' . number_format((($row['precio'] * $row['cantidad']) + $row['adicional']), 2, '.', ','), 0, 1, 'R');
 			} else {
-				$pdf->Cell(5, 5, $row['cantidad'], 0, 0, 'L');
+				$pdf->Cell(5, 5,intval($row['cantidad']), 0, 0, 'L');
 				$pdf->Cell(30, 5, utf8_decode($row['nombre']), 0, 0, 'L');
 				$pdf->Cell(12, 5, '$ ' . $row['precio'], 0, 0, 'L');
 				$pdf->Cell(12, 5, '$ ' . $row['adicional'], 0, 0, 'L');
@@ -241,7 +245,7 @@ class Ventas extends BaseController
 	{
 		$datos = $this->ventas->obtener(0);
 		$data = [
-			'titulo' => 'ventas elimianadas',
+			'titulo' => 'Ventas elimianadas',
 			'datos' => $datos
 		];
 		echo view('header');

@@ -31,9 +31,11 @@ class Compras extends BaseController{
 		echo view('footer');
 	}
 	public function nuevo(){
-		
+		$data = [
+			'titulo' => 'Comprar'
+		];
 		echo view('header');
-		echo view('compras/nuevo');
+		echo view('compras/nuevo',$data );
 		echo view('footer');
 	}
 
@@ -82,7 +84,7 @@ class Compras extends BaseController{
 		$pdf->SetFont('Arial','B', 10);
 		$pdf->Cell(195,5,"Entrada de productos", 0, 1, 'C');
 		$pdf->SetFont('Arial','B', 9);
-		$pdf->image(base_url().'/images/logopdf.png',185,10,20,10,'PNG');
+		$pdf->image(base_url().'/public/assets/img/brand/negro.png',175,10,30,10,'PNG');
 		$pdf->Cell(50,5,utf8_decode($nombreTienda), 0, 1, 'L');
 		$pdf->Cell(50,5, utf8_decode($direccionTienda), 0, 1, 'L');
 		$pdf->Cell(25,5,"Fecha y Hora:", 0, 0, 'L');
